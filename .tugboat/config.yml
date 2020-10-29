@@ -32,10 +32,10 @@ services:
         # Clone the lastest version of Drupal 9 (9.2.x)
         git clone https://git.drupalcode.org/project/drupal.git
         cd drupal
-        cp ../.tugboat .tugboat
+        cp -R ../.tugboat .tugboat
         git add .tugboat
         git commit -m "Adding Tugboat config to Drupal 9"
-        git push --force main 9.2.x
+        # git push --force main 9.2.x
 
         # Link the document root to the expected path. This example links /web
         # to the docroot.
