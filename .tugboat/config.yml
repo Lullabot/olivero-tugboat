@@ -10,13 +10,15 @@ services:
       - standard
     commands:
       init:
-        ln -snf "${TUGBOAT_ROOT}/web" "${DRUPAL_DOCROOT}"
-        - cp .tugboat/sites.php $DRUPAL_DOCROOT/sites/sites.php
+        - cp .tugboat/sites.php $TUGBOAT_ROOT/web/sites/sites.php
         - docker-php-ext-install opcache
         - a2enmod headers rewrite
         - wget -O /usr/local/bin/drush https://github.com/drush-ops/drush-launcher/releases/download/0.6.0/drush.phar
         - chmod +x /usr/local/bin/drush
       update: |
+
+        set -eux
+        export COMPOSER_MEMORY_LIMIT=-1
 
         # Create a Drupal 9 site with Tugboat config.
         [ -d web ] && rm -rf web
