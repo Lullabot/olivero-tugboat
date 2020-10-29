@@ -30,13 +30,14 @@ services:
         find "${DOCROOT}/sites/default/files" -type f -exec chmod 0664 {} \;
         drush --yes --db-url=mysql://tugboat:tugboat@mysql:3306/tugboat --account-name=admin --account-pass=admin site:install standard
 
-      build:
-        - composer install --optimize-autoloader
-        - composer require drush/drush
-        - drush cache:rebuild
-        - drush config:import -y
-        - drush updatedb -y
-        - drush cache:rebuild
+      build: |
+        cd "${DOCROOT}"
+        composer install --optimize-autoloader
+        composer require drush/drush
+        drush cache:rebuild
+        drush config:import -y
+        drush updatedb -y
+        drush cache:rebuild
 
   mysql:
     image: tugboatqa/mariadb:10.5
