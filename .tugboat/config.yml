@@ -21,15 +21,12 @@ services:
         - docker-php-ext-install opcache
         - a2enmod headers rewrite
 
-        # Install drush
-        - wget -O /usr/local/bin/drush https://github.com/drush-ops/drush-launcher/releases/download/0.6.0/drush.phar
-
       update: |
 
         # Remove the Drupal 9 directory if it exists.
         [ -d web ] && rm -rf web
 
-        # Clone the lastest version of Drupal 9 (9.2.x)
+        # Clone the lastest version of Drupal 9 (9.2.x).
         git clone https://git.drupalcode.org/project/drupal.git web
         cd web
         cp -R ../.tugboat .tugboat
@@ -37,11 +34,14 @@ services:
         git commit -m "Adding Tugboat config to Drupal 9"
         # git push --force main 9.2.x
 
+        # Add modules.
+        composer require drush/drush
+
         # Link the document root to the expected path. This example links /web
         # to the docroot.
         ln -snf "${TUGBOAT_ROOT}/web" "${DOCROOT}"
 
-        # Configure Drupal
+        # Configure Drupal.
         cp sites/default/default.settings.php sites/default/settings.php
         echo "
         \$databases['default']['default'] = array(
