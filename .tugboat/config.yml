@@ -90,11 +90,11 @@ services:
         cd $TUGBOAT_ROOT/web
         composer install --optimize-autoloader
         composer require drush/drush
-        drush -y --uri=preloaded dupdatedb
+        drush -y --uri=preloaded updatedb
         drush --uri=preloaded cache:rebuild
-        drush -y --uri=minimal dupdatedb
+        drush -y --uri=minimal updatedb
         drush --uri=minimal cache:rebuild
-        drush -y --uri=standard dupdatedb
+        drush -y --uri=standard updatedb
         drush --uri=standard cache:rebuild
 
     visualdiffs:
