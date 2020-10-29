@@ -10,7 +10,6 @@ services:
       - standard
     commands:
       init:
-        - cp .tugboat/sites.php $TUGBOAT_ROOT/web/sites/sites.php
         - docker-php-ext-install opcache
         - a2enmod headers rewrite
         - wget -O /usr/local/bin/drush https://github.com/drush-ops/drush-launcher/releases/download/0.6.0/drush.phar
@@ -23,6 +22,7 @@ services:
         # Create a Drupal 9 site with Tugboat config.
         [ -d web ] && rm -rf web
         git clone https://git.drupalcode.org/project/drupal.git web
+        cp .tugboat/sites.php web/sites/sites.php
         cd web
         cp -R ../.tugboat .tugboat
         git add .tugboat
