@@ -35,7 +35,7 @@ services:
         cp ../.tugboat .tugboat
         git add .tugboat
         git commit -m "Adding Tugboat config to Drupal 9"
-        git push --force master 9.2.x
+        git push --force main 9.2.x
 
         # Link the document root to the expected path. This example links /web
         # to the docroot.
@@ -97,6 +97,6 @@ services:
         # Copy a database dump from an external server. The public
         # SSH key found in the Tugboat Repository configuration must be
         # copied to the external server in order to use scp.
-        - scp user@example.com:database.sql.gz /tmp/database.sql.gz
-        - zcat /tmp/database.sql.gz | mysql tugboat
-        - rm /tmp/database.sql.gz
+        # - scp user@example.com:database.sql.gz /tmp/database.sql.gz
+        # - zcat /tmp/database.sql.gz | mysql tugboat
+        # - rm /tmp/database.sql.gz
