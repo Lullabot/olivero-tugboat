@@ -27,11 +27,11 @@ services:
       update: |
 
         # Remove the Drupal 9 directory if it exists.
-        [ -d drupal ] && rm -rf drupal
+        [ -d web ] && rm -rf web
 
         # Clone the lastest version of Drupal 9 (9.2.x)
-        git clone https://git.drupalcode.org/project/drupal.git
-        cd drupal
+        git clone https://git.drupalcode.org/project/drupal.git web
+        cd web
         cp -R ../.tugboat .tugboat
         git add .tugboat
         git commit -m "Adding Tugboat config to Drupal 9"
@@ -39,12 +39,7 @@ services:
 
         # Link the document root to the expected path. This example links /web
         # to the docroot.
-        ln -snf "${TUGBOAT_ROOT}/drupal" "${DOCROOT}"
-
-        # Set file permissions such that Drupal will not complain.
-        chgrp -R www-data "${DOCROOT}/sites/default/files"
-        find "${DOCROOT}/sites/default/files" -type d -exec chmod 2775 {} \;
-        find "${DOCROOT}/sites/default/files" -type f -exec chmod 0664 {} \;
+        ln -snf "${TUGBOAT_ROOT}/web" "${DOCROOT}"
 
         # Configure Drupal
         cp sites/default/default.settings.php sites/default/settings.php
@@ -64,6 +59,11 @@ services:
         error_reporting(E_ALL);
         ini_set('display_errors', TRUE);
         ini_set('display_startup_errors', TRUE);" >> sites/default/settings.php
+
+        # Set file permissions such that Drupal will not complain.
+        chgrp -R www-data "${DOCROOT}/sites/default/files"
+        find "${DOCROOT}/sites/default/files" -type d -exec chmod 2775 {} \;
+        find "${DOCROOT}/sites/default/files" -type f -exec chmod 0664 {} \;
 
         # Install drupal
         composer install --optimize-autoloader
