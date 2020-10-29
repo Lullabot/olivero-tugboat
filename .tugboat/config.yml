@@ -89,9 +89,14 @@ services:
         export COMPOSER_MEMORY_LIMIT=-1
         cd $TUGBOAT_ROOT/web
         composer install --optimize-autoloader
-        $TUGBOAT_ROOT/web/.tugboat/build.sh preloaded
-        $TUGBOAT_ROOT/web/.tugboat/build.sh minimal
-        $TUGBOAT_ROOT/web/.tugboat/build.sh standard
+        composer require drush/drush
+        drush -y --uri=preloaded dupdatedb
+        drush --uri=preloaded cache:rebuild
+        drush -y --uri=minimal dupdatedb
+        drush --uri=minimal cache:rebuild
+        drush -y --uri=standard dupdatedb
+        drush --uri=standard cache:rebuild
+
     visualdiffs:
       - /
       - /node/7
