@@ -21,7 +21,9 @@ services:
 
         # Create a Drupal 9 site with Tugboat config.
         [ -d web ] && rm -rf web
-        git clone https://git.drupalcode.org/project/drupal.git web
+        git clone --branch 9.1.x --single-branch https://git.drupalcode.org/project/drupal.git web
+        pwd
+        ls -la
         cp .tugboat/sites.php web/sites/sites.php
         cd web
         cp -R ../.tugboat .tugboat
