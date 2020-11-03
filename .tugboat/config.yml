@@ -23,7 +23,8 @@ services:
         [ -d web ] && rm -rf web
         git clone --branch 9.1.x --single-branch https://git.drupalcode.org/project/drupal.git drupal
         rm -rf drupal/.git
-        mv drupal/* drupal/.* .
+        shopt -s dotglob nullglob
+        mv drupal/* .
         # cd web
         # cp -R ../.tugboat .tugboat
         git checkout -b 9.1.x
