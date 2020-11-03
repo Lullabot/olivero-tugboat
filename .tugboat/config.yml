@@ -32,7 +32,7 @@ services:
         # git push --force main 9.2.x
 
         # Install Drupal.
-        ln -snf "${TUGBOAT_ROOT}/web" "${DRUPAL_DOCROOT}"
+        ln -snf "${TUGBOAT_ROOT}/web" "${DOCROOT}"
         composer install --optimize-autoloader
         composer require drush/drush
         composer require drupal/webform:6.0.0-alpha9 -vvv
@@ -48,9 +48,9 @@ services:
           --site-name=Olivero \
           --account-pass=${ADMIN_PASSWORD} \
           site:install minimal
-        chgrp -R www-data $DRUPAL_DOCROOT/sites/minimal/files
-        chmod 2775 $DRUPAL_DOCROOT/sites/minimal/files
-        chmod -R g+w $DRUPAL_DOCROOT/sites/minimal/files
+        chgrp -R www-data $DOCROOT/sites/minimal/files
+        chmod 2775 $DOCROOT/sites/minimal/files
+        chmod -R g+w $DOCROOT/sites/minimal/files
 
         # Install Drupal on the standard site.
         vendor/bin/drush \
@@ -60,9 +60,9 @@ services:
           --site-name=Olivero \
           --account-pass=${ADMIN_PASSWORD} \
           site:install standard
-        chgrp -R www-data $DRUPAL_DOCROOT/sites/standard/files
-        chmod 2775 $DRUPAL_DOCROOT/sites/standard/files
-        chmod -R g+w $DRUPAL_DOCROOT/sites/standard/files
+        chgrp -R www-data $DOCROOT/sites/standard/files
+        chmod 2775 $DOCROOT/sites/standard/files
+        chmod -R g+w $DOCROOT/sites/standard/files
 
         # Install Drupal on the preloaded site. We're really only doing this to
         # get the site dir and settings.php file created properly.
@@ -81,10 +81,10 @@ services:
 
         # Download the files for preloaded.
         wget -O /tmp/olivero_files.zip ${PRELOADED_FILES_ZIP}
-        unzip -od $DRUPAL_DOCROOT/sites/preloaded/files /tmp/olivero_files.zip
-        chgrp -R www-data $DRUPAL_DOCROOT/sites/preloaded/files
-        chmod 2775 $DRUPAL_DOCROOT/sites/preloaded/files
-        chmod -R g+w $DRUPAL_DOCROOT/sites/preloaded/files
+        unzip -od $DOCROOT/sites/preloaded/files /tmp/olivero_files.zip
+        chgrp -R www-data $DOCROOT/sites/preloaded/files
+        chmod 2775 $DOCROOT/sites/preloaded/files
+        chmod -R g+w $DOCROOT/sites/preloaded/files
 
       build: |
         set -eux
