@@ -21,18 +21,21 @@ services:
 
         # Create a Drupal 9 site with Tugboat config.
         [ -d web ] && rm -rf web
-        git clone --branch 9.1.x --single-branch https://git.drupalcode.org/project/drupal.git web
-        pwd
-        ls -la
-        cp .tugboat/sites.php web/sites/sites.php
-        cd web
-        cp -R ../.tugboat .tugboat
-        git add .tugboat
-        git commit -m "Adding Tugboat config to Drupal 9"
-        # git push --force main 9.2.x
+        git clone --branch 9.1.x --single-branch https://git.drupalcode.org/project/drupal.git drupal
+        rm -rf drupal/.git
+        mv drupal/* drupal/.* .
+        # cd web
+        # cp -R ../.tugboat .tugboat
+        git checkout -b 9.1.x
+        git add .
+        git commit -m "Adding Drupal 9."
+        # git add .tugboat
+        # git commit -m "Adding Tugboat config to Drupal 9"
+        git push --force origin 9.1.x
+        cp .tugboat/sites.php sites/sites.php
 
         # Install Drupal.
-        ln -snf "${TUGBOAT_ROOT}/web" "${DOCROOT}"
+        ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
         composer install --optimize-autoloader
         composer require drush/drush
         composer require drupal/webform:6.0.0-alpha9 -vvv
