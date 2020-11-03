@@ -27,6 +27,8 @@ services:
         # mv drupal/* .
         cd drupal/ &&
         find . -name . -o -exec sh -c 'mv -- "$@" "$0"' ../ {} + -type d -prune
+        cd ..
+        rm drupal/
         # cd web
         # cp -R ../.tugboat .tugboat
         git checkout -b 9.1.x
