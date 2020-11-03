@@ -15,36 +15,33 @@ services:
         - wget -O /usr/local/bin/drush https://github.com/drush-ops/drush-launcher/releases/download/0.6.0/drush.phar
         - chmod +x /usr/local/bin/drush
       update: |
-
         set -eux
         export COMPOSER_MEMORY_LIMIT=-1
 
         # Create a Drupal 9 site with Tugboat config.
-        # [ -d drupal ] && rm -rf drupal
         git clone --branch 9.1.x --single-branch https://git.drupalcode.org/project/drupal.git drupal
         rm -rf drupal/.git
 
         # Moves all files (including dotfiles) to root of repository.
-        cd drupal/ &&
-        find . -name . -o -exec sh -c 'mv -- "$@" "$0"' ../ {} + -type d -prune
-        cd ..
-        pwd
-        ls -la
+        cd drupal/ && find . -name . -o -exec sh -c 'mv -- "$@" "$0"' ../ {} + -type d -prune && cd ..
         rm -rf drupal/
+
+        # Add Drupal to new branch, and push.
         git checkout -b 9.1.x
         git add .
         git commit -m "Adding Drupal 9."
         git push --force origin 9.1.x
+
         cp .tugboat/sites.php sites/sites.php
 
         # Install Drupal.
         ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
         composer install --optimize-autoloader
         composer require drush/drush
-        composer require drupal/webform:6.0.0-alpha9 -vvv
+        composer require drupal/webform:^6 -vvv
         composer require drupal/admin_toolbar -vvv
         composer require drupal/metatag -vvv
-        composer require drupal/devel:4.0.0 -vvv
+        composer require drupal/devel:^4 -vvv
 
         # Install Drupal on the minimal site.
         vendor/bin/drush \
