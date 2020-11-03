@@ -20,24 +20,20 @@ services:
         export COMPOSER_MEMORY_LIMIT=-1
 
         # Create a Drupal 9 site with Tugboat config.
-        [ -d web ] && rm -rf web
+        # [ -d drupal ] && rm -rf drupal
         git clone --branch 9.1.x --single-branch https://git.drupalcode.org/project/drupal.git drupal
         rm -rf drupal/.git
-        # shopt -s dotglob nullglob
-        # mv drupal/* .
+
+        # Moves all files (including dotfiles) to root of repository.
         cd drupal/ &&
         find . -name . -o -exec sh -c 'mv -- "$@" "$0"' ../ {} + -type d -prune
         cd ..
         pwd
         ls -la
         rm -rf drupal/
-        # cd web
-        # cp -R ../.tugboat .tugboat
         git checkout -b 9.1.x
         git add .
         git commit -m "Adding Drupal 9."
-        # git add .tugboat
-        # git commit -m "Adding Tugboat config to Drupal 9"
         git push --force origin 9.1.x
         cp .tugboat/sites.php sites/sites.php
 
@@ -99,7 +95,7 @@ services:
       build: |
         set -eux
         export COMPOSER_MEMORY_LIMIT=-1
-        cd $TUGBOAT_ROOT/web
+        cd $TUGBOAT_ROOT
         composer install --optimize-autoloader
         composer require drush/drush
         drush -y --uri=preloaded updatedb
