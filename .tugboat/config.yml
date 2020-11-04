@@ -38,10 +38,6 @@ services:
         ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
         composer install --optimize-autoloader
         composer require drush/drush
-        composer require drupal/webform:^6 -vvv
-        composer require drupal/admin_toolbar -vvv
-        composer require drupal/metatag -vvv
-        composer require drupal/devel:^4 -vvv
 
         # Install Drupal on the minimal site.
         vendor/bin/drush \
