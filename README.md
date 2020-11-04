@@ -1,5 +1,5 @@
 
-# Tugboat Drupal Dev Branch Builder (with database and content import)
+# Tugboat Drupal Dev Branch Builder (with database and content import) for Olivero
 
 This repository pulls in the latest Drupal `9.1.x` HEAD and then builds three previews:
 
@@ -8,6 +8,12 @@ This repository pulls in the latest Drupal `9.1.x` HEAD and then builds three pr
    - Pulls in a zip file of the Drupal's `sites/default/files` directory.
 2. Standard install (setting the default theme to Olivero)
 3. Minimal install (setting the default theme to Olivero)
+
+The preloaded content preview can be found at [https://lb.cm/olivero](https://lb.cm/olivero).
+
+# Visual diffs
+
+Tugboat will generate visual diffs against the base preview. To do this, you'll need to commit your changes to a new branch, push it, and then tell Tugboat to build through the Tugboat admin UI.
 
 ## How to update the database, and files (assumes MacOS)
 

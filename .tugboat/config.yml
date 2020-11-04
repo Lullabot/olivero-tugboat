@@ -78,9 +78,6 @@ services:
         zcat /tmp/olivero_db.sql.gz | vendor/bin/drush --uri=preloaded sql:cli
         rm /tmp/olivero_db.sql.gz
 
-        # Update the preloaded database.
-        drush -y --uri=preloaded updatedb
-
         # Set default theme for minimal and standard profiles.
         drush --uri=minimal theme:enable olivero
         drush --uri=minimal config:set system.theme default olivero
@@ -105,7 +102,9 @@ services:
         composer require drupal/metatag -vvv
         composer require drupal/devel:^4 -vvv
 
-        drush --uri=preloaded cache:rebuild
+        # Update the preloaded database and clear the cache.
+        drush -y --uri=preloaded updatedb
+        drush -y --uri=preloaded cache:rebuild
 
     visualdiffs:
       - /
@@ -114,12 +113,14 @@ services:
       - /node/4
       - /node/1
       - /node/3
+      - /node/31
+      - /node/58
+      - /node/59
       - /form/job-application
       - /form/registration
       - /form/session-evaluation
       - /form/user-profile
       - /grid-view
-      - /node/31
       - /table
       - /contact
       - /search/node?keys=drupal
