@@ -82,6 +82,15 @@ services:
         zcat /tmp/olivero_db.sql.gz | vendor/bin/drush --uri=preloaded sql:cli
         rm /tmp/olivero_db.sql.gz
 
+        # Update the preloaded database.
+        drush -y --uri=preloaded updatedb
+
+        # Set default theme for minimal and standard profiles.
+        drush --uri=minimal theme:enable olivero
+        drush --uri=minimal config:set system.theme default olivero
+        drush --uri=standard theme:enable olivero
+        drush --uri=standard config:set system.theme default olivero
+
         # Download the files for preloaded.
         wget -O /tmp/olivero_files.zip ${PRELOADED_FILES_ZIP}
         unzip -od $DOCROOT/sites/preloaded/files /tmp/olivero_files.zip
@@ -95,12 +104,12 @@ services:
         cd $TUGBOAT_ROOT
         composer install --optimize-autoloader
         composer require drush/drush
-        drush -y --uri=preloaded updatedb
+        composer require drupal/webform:^6 -vvv
+        composer require drupal/admin_toolbar -vvv
+        composer require drupal/metatag -vvv
+        composer require drupal/devel:^4 -vvv
+
         drush --uri=preloaded cache:rebuild
-        drush -y --uri=minimal updatedb
-        drush --uri=minimal cache:rebuild
-        drush -y --uri=standard updatedb
-        drush --uri=standard cache:rebuild
 
     visualdiffs:
       - /
