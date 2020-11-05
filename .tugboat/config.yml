@@ -26,9 +26,9 @@ services:
         cd drupal/ && find . -name . -o -exec sh -c 'mv -- "$@" "$0"' ../ {} + -type d -prune && cd ..
         rm -rf drupal/
 
-        # Delete existing branch
-        git branch -d 9.1.x
-        git push origin --delete 9.1.x
+        # Delete existing Drupal branch if exists.
+        git branch -d 9.1.x || true
+        git push origin --delete 9.1.x || true
 
         # Add Drupal to new branch, and push.
         git checkout -b 9.1.x
