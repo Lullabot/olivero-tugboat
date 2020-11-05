@@ -26,6 +26,10 @@ services:
         cd drupal/ && find . -name . -o -exec sh -c 'mv -- "$@" "$0"' ../ {} + -type d -prune && cd ..
         rm -rf drupal/
 
+        # Delete existing branch
+        git branch -d 9.1.x
+        git push origin --delete 9.1.x
+
         # Add Drupal to new branch, and push.
         git checkout -b 9.1.x
         git add .
@@ -101,6 +105,11 @@ services:
         composer require drupal/admin_toolbar -vvv
         composer require drupal/metatag -vvv
         composer require drupal/devel:^4 -vvv
+
+        # Add composer files to git
+        git add composer*
+        git commit -m "Adding updated composer files."
+        git push origin 9.1.x
 
         # Update the preloaded database and clear the cache.
         drush -y --uri=preloaded updatedb
