@@ -19,7 +19,7 @@ services:
         export COMPOSER_MEMORY_LIMIT=-1
 
         # Create a Drupal 9 site with Tugboat config.
-        git clone --branch 9.1.x --single-branch https://git.drupalcode.org/project/drupal.git drupal
+        git clone --branch 9.1.x --single-branch --quiet https://git.drupalcode.org/project/drupal.git drupal
         rm -rf drupal/.git
 
         # Moves all files (including dotfiles) to root of repository.
@@ -36,10 +36,11 @@ services:
         git commit -m "Adding Drupal 9."
         git push --force origin 9.1.x
 
-        cp .tugboat/sites.php sites/sites.php
+        cp $TUGBOAT_ROOT/.tugboat/sites.php $TUGBOAT_ROOT/sites/sites.php
 
         # Install Drupal.
         ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
+        cd $TUGBOAT_ROOT
         composer install --optimize-autoloader
         composer require drush/drush
 
@@ -101,15 +102,15 @@ services:
         cd $TUGBOAT_ROOT
         composer install --optimize-autoloader
         composer require drush/drush
-        composer require drupal/webform:^6 -vvv
-        composer require drupal/admin_toolbar -vvv
-        composer require drupal/metatag -vvv
-        composer require drupal/devel:^4 -vvv
+        composer require drupal/webform:^6
+        composer require drupal/admin_toolbar
+        composer require drupal/metatag
+        composer require drupal/devel:^4
 
         # Add composer files to git
-        git add composer*
-        git commit -m "Adding updated composer files."
-        git push origin 9.1.x
+        git add composer.json composer.lock
+        git commit -m "Adding updated composer files." || true
+        git push origin 9.1.x || true
 
         # Update the preloaded database and clear the cache.
         drush -y --uri=preloaded updatedb
