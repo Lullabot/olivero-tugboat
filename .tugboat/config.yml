@@ -137,6 +137,7 @@ services:
       - /search/node?keys=drupal
       - /user/login
       - /user/register
+      - /admin/appearance/styleguide/olivero
   mysql:
     image: tugboatqa/mariadb
     commands:
