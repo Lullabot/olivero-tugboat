@@ -106,6 +106,7 @@ services:
         composer require drupal/admin_toolbar
         composer require drupal/metatag
         composer require drupal/devel:^4
+        composer require drupal/styleguide:2.x-dev@dev
 
         # Add composer files to git
         git add composer.json composer.lock
