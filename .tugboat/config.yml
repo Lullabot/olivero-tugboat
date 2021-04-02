@@ -103,6 +103,7 @@ services:
         composer install --optimize-autoloader
         composer require drush/drush
         composer require drupal/webform:^6
+        composer require drupal/form_style
         composer require drupal/admin_toolbar
         composer require drupal/metatag
         composer require drupal/devel:^4
@@ -138,6 +139,8 @@ services:
       - /user/login
       - /user/register
       - /admin/appearance/styleguide/olivero
+      - /appearance/form_style
+      - /node/60
   mysql:
     image: tugboatqa/mariadb
     commands:
