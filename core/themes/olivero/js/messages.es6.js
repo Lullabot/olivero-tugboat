@@ -11,7 +11,9 @@
    *   The message object.
    */
   const closeMessage = (message) => {
-    const messageContainer = message.querySelector('.messages__container');
+    const messageContainer = message.querySelector(
+      '[data-drupal-selector="messages-container"]',
+    );
 
     const closeBtnWrapper = document.createElement('div');
     closeBtnWrapper.setAttribute('class', 'messages__button');
@@ -112,7 +114,11 @@
    */
   Drupal.behaviors.messages = {
     attach(context) {
-      once('olivero-messages', '.messages', context).forEach(closeMessage);
+      once(
+        'messages',
+        '[data-drupal-selector="messages"]',
+        context,
+      ).forEach(closeMessage);
     },
   };
 })(Drupal, once);

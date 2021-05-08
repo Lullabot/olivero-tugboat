@@ -7,7 +7,7 @@
 
 (function (Drupal, once) {
   var closeMessage = function closeMessage(message) {
-    var messageContainer = message.querySelector('.messages__container');
+    var messageContainer = message.querySelector('[data-drupal-selector="messages-container"]');
     var closeBtnWrapper = document.createElement('div');
     closeBtnWrapper.setAttribute('class', 'messages__button');
     var closeBtn = document.createElement('button');
@@ -62,7 +62,7 @@
 
   Drupal.behaviors.messages = {
     attach: function attach(context) {
-      once('olivero-messages', '.messages', context).forEach(closeMessage);
+      once('messages', '[data-drupal-selector="messages"]', context).forEach(closeMessage);
     }
   };
 })(Drupal, once);
