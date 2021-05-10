@@ -100,8 +100,6 @@ services:
         set -eux
         export COMPOSER_MEMORY_LIMIT=-1
         cd $TUGBOAT_ROOT
-        composer install --optimize-autoloader
-        composer config repositories.'zolhorvath/cd_tools' github https://github.com/zolhorvath/cd_tools.git
         composer require zolhorvath/cd_tools
         composer require drush/drush
         composer require drupal/webform:^6
@@ -110,6 +108,11 @@ services:
         composer require drupal/metatag
         composer require drupal/devel:^4
         composer require drupal/styleguide:2.x-dev@dev
+
+        # Download Claro Tools
+        wget -O /tmp/cd_tools.zip https://github.com/zolhorvath/cd_tools/archive/refs/tags/3.0.0.zip
+        unzip -od $DOCROOT/modules/contrib/files /tmp/cd_tools.zip
+
 
         # Add composer files to git
         git add composer.json composer.lock
