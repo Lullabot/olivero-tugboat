@@ -146,6 +146,9 @@ services:
       - /admin/appearance/styleguide/olivero
       - /appearance/form_style
       - /node/60
+      - /message/long
+      - /buttons
+      - /tabledrag
   mysql:
     image: tugboatqa/mariadb
     commands:
