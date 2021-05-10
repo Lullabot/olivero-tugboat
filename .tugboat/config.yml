@@ -96,6 +96,11 @@ services:
         chmod 2775 $DOCROOT/sites/preloaded/files
         chmod -R g+w $DOCROOT/sites/preloaded/files
 
+        # Download Claro Tools
+        wget -O /tmp/cd_tools.zip https://github.com/zolhorvath/cd_tools/archive/refs/tags/3.0.0.zip
+        unzip -od $DOCROOT/modules/contrib /tmp/cd_tools.zip
+        mv $DOCROOT/modules/contrib/cd_tools-3.0.0 $DOCROOT/modules/contrib/cd_tools
+
       build: |
         set -eux
         export COMPOSER_MEMORY_LIMIT=-1
