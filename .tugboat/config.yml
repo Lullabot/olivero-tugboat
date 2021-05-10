@@ -101,6 +101,8 @@ services:
         export COMPOSER_MEMORY_LIMIT=-1
         cd $TUGBOAT_ROOT
         composer install --optimize-autoloader
+        composer config repositories.'zolhorvath/cd_tools' github https://github.com/zolhorvath/cd_tools.git
+        composer require zolhorvath/cd_tools
         composer require drush/drush
         composer require drupal/webform:^6
         composer require drupal/form_style
