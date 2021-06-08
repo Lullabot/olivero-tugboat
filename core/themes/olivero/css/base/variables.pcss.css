@@ -116,21 +116,24 @@
   --sp10: calc(10 * var(--sp));
   --sp11: calc(11 * var(--sp));
   --sp12: calc(12 * var(--sp));
+
+  --color--gray-hue: 201;
+  --color--gray-saturation: 15%;
   --color--black: #000; /* Black */
 
-  --color--gray-0: hsl(197, 21%, 6%); /* Black 1 */
-  --color--gray-10: hsl(190, 6%, 20%); /* Black 2 */
-  --color--gray-20: hsl(195, 2%, 44%); /* Black 3 */
-  --color--gray-25: hsl(204, 18%, 44%); /* Gray Dark */
-  --color--gray-28: hsl(203, 14%, 55%); /* Gray Dark 2 */
-  --color--gray-30: hsl(205, 19%, 57%); /* Gray medium */
-  --color--gray-40: hsl(205, 19%, 66%); /* Gray medium 1 */
-  --color--gray-45: hsl(204, 10%, 72%); /* Gray medium 2 */
-  --color--gray-50: hsl(200, 2%, 63%); /* Black 4 */
-  --color--gray-70: hsl(205, 27%, 88%); /* Gray light */
-  --color--gray-80: hsl(204, 26%, 93%); /* Gray light 1 */
-  --color--gray-90: hsl(210, 27%, 96%);
-  --color--gray-95: hsl(200, 23%, 97%); /* Gray light 2 */
+  --color--gray-0: hsl(var(--color--gray-hue), var(--color--gray-saturation), 6%); /* Black 1 */
+  --color--gray-10: hsl(var(--color--gray-hue), var(--color--gray-saturation), 20%); /* Black 2 */
+  --color--gray-20: hsl(var(--color--gray-hue), var(--color--gray-saturation), 44%); /* Black 3 */
+  --color--gray-25: hsl(var(--color--gray-hue), var(--color--gray-saturation), 44%); /* Gray Dark */
+  --color--gray-28: hsl(var(--color--gray-hue), var(--color--gray-saturation), 55%); /* Gray Dark 2 */
+  --color--gray-30: hsl(var(--color--gray-hue), var(--color--gray-saturation), 57%); /* Gray medium */
+  --color--gray-40: hsl(var(--color--gray-hue), var(--color--gray-saturation), 66%); /* Gray medium 1 */
+  --color--gray-45: hsl(var(--color--gray-hue), var(--color--gray-saturation), 72%); /* Gray medium 2 */
+  --color--gray-50: hsl(var(--color--gray-hue), var(--color--gray-saturation), 63%); /* Black 4 */
+  --color--gray-70: hsl(var(--color--gray-hue), var(--color--gray-saturation), 88%); /* Gray light */
+  --color--gray-80: hsl(var(--color--gray-hue), var(--color--gray-saturation), 93%); /* Gray light 1 */
+  --color--gray-90: hsl(var(--color--gray-hue), var(--color--gray-saturation), 96%);
+  --color--gray-95: hsl(var(--color--gray-hue), var(--color--gray-saturation), 97%); /* Gray light 2 */
 
   /*
     Original color mappings.
