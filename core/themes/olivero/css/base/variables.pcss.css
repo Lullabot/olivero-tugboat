@@ -130,11 +130,23 @@
   --color--gray-80: #e7edf1; /* Gray light 1 */
   --color--gray-90: #f1f4f7;
   --color--gray-95: #f7f9fa; /* Gray light 2 */
-  --color--blue-20: #0d77b5; /* Blue dark */
-  --color--blue-30: #3d92c4; /* Blue dark 2 */
-  --color--blue-50: #2494db; /* Blue medium */
-  --color--blue-70: #53b0eb; /* Blue bright */
-  --color--blue-90: #ddeffb; /* Blue bright 5 */
+
+  /*
+    Original color mappings.
+
+  --color--blue-20: #0d77b5; - Blue dark - hsl(202, 87%, 38%)
+  --color--blue-30: #3d92c4; - Blue dark 2 - hsl(202, 53%, 50%)
+  --color--blue-50: #2494db; - Blue medium - hsl(203, 72%, 50%)
+  --color--blue-70: #53b0eb; - Blue bright - hsl(203, 79%, 62%)
+  --color--blue-90: #ddeffb; - Blue bright 5 - hsl(204, 79%, 93%)
+
+  */
+
+  --color--blue-20: hsl(202, 87%, 38%); /* Blue dark */
+  --color--blue-30: hsl(202, 53%, 50%); /* Blue dark 2 */
+  --color--blue-50: hsl(203, 72%, 50%); /* Blue medium */
+  --color--blue-70: hsl(203, 79%, 62%); /* Blue bright */
+  --color--blue-90: hsl(204, 79%, 93%); /* Blue bright 5 */
   --color--white: #fff; /* White */
   --color--red: #e33f1e; /* Red */
   --color--gold: #fdca40; /* Gold */
