@@ -142,11 +142,13 @@
 
   */
 
-  --color--blue-20: hsl(202, 87%, 38%); /* Blue dark */
-  --color--blue-30: hsl(202, 53%, 50%); /* Blue dark 2 */
-  --color--blue-50: hsl(203, 72%, 50%); /* Blue medium */
-  --color--blue-70: hsl(203, 79%, 62%); /* Blue bright */
-  --color--blue-90: hsl(204, 79%, 93%); /* Blue bright 5 */
+  --color--blue-hue: 202;
+  --color--blue-saturation: 79%;
+  --color--blue-20: hsl(var(--color--blue-hue), var(--color--blue-saturation), 38%); /* Blue dark */
+  --color--blue-30: hsl(var(--color--blue-hue), var(--color--blue-saturation), 50%); /* Blue dark 2 */
+  --color--blue-50: hsl(var(--color--blue-hue), var(--color--blue-saturation), 50%); /* Blue medium */
+  --color--blue-70: hsl(var(--color--blue-hue), var(--color--blue-saturation), 62%); /* Blue bright */
+  --color--blue-90: hsl(var(--color--blue-hue), var(--color--blue-saturation), 93%); /* Blue bright 5 */
   --color--white: #fff; /* White */
   --color--red: #e33f1e; /* Red */
   --color--gold: #fdca40; /* Gold */
