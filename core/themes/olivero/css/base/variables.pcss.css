@@ -118,44 +118,19 @@
   --sp12: calc(12 * var(--sp));
   --color--black: #000; /* Black */
 
-  --color--gray-0: #0d1214; /* Black 1 */
-  /* hsl(197, 21%, 6%) */
-
-  --color--gray-10: #313637; /* Black 2 */
-  /* hsl(190, 6%, 20%) */
-
-  --color--gray-20: #6e7172; /* Black 3 */
-  /* hsl(195, 2%, 44%) */
-
-  --color--gray-25: #5d7585; /* Gray Dark */
-  /* hsl(204, 18%, 44%) */
-
-  --color--gray-28: #7d919d; /* Gray Dark 2 */
-  /* hsl(203, 14%, 55%) */
-
-  --color--gray-30: #7e96a7; /* Gray medium */
-  /* hsl(205, 19%, 57%) */
-
-  --color--gray-40: #98abb9; /* Gray medium 1 */
-  /* hsl(205, 19%, 66%) */
-
-  --color--gray-45: #afb8be; /* Gray medium 2 */
-  /* hsl(204, 10%, 72%) */
-
-  --color--gray-50: #9ea0a1; /* Black 4 */
-  /* hsl(200, 2%, 63%) */
-
-  --color--gray-70: #d7e1e8; /* Gray light */
-  /* hsl(205, 27%, 88%) */
-
-  --color--gray-80: #e7edf1; /* Gray light 1 */
-  /* hsl(204, 26%, 93%) */
-
-  --color--gray-90: #f1f4f7;
-  /* hsl(210, 27%, 96%) */
-
-  --color--gray-95: #f7f9fa; /* Gray light 2 */
-  /* hsl(200, 23%, 97%) */
+  --color--gray-0: hsl(197, 21%, 6%); /* Black 1 */
+  --color--gray-10: hsl(190, 6%, 20%); /* Black 2 */
+  --color--gray-20: hsl(195, 2%, 44%); /* Black 3 */
+  --color--gray-25: hsl(204, 18%, 44%); /* Gray Dark */
+  --color--gray-28: hsl(203, 14%, 55%); /* Gray Dark 2 */
+  --color--gray-30: hsl(205, 19%, 57%); /* Gray medium */
+  --color--gray-40: hsl(205, 19%, 66%); /* Gray medium 1 */
+  --color--gray-45: hsl(204, 10%, 72%); /* Gray medium 2 */
+  --color--gray-50: hsl(200, 2%, 63%); /* Black 4 */
+  --color--gray-70: hsl(205, 27%, 88%); /* Gray light */
+  --color--gray-80: hsl(204, 26%, 93%); /* Gray light 1 */
+  --color--gray-90: hsl(210, 27%, 96%);
+  --color--gray-95: hsl(200, 23%, 97%); /* Gray light 2 */
 
   /*
     Original color mappings.
