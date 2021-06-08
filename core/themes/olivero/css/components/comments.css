@@ -67,7 +67,7 @@
   text-align: center;
   color: #fff;
   border-radius: 2px;
-  background-color: #0d77b5;
+  background-color: hsl(202, 79%, 38%);
   font-size: 0.6875rem;
   line-height: 1.3125rem
 }
@@ -94,7 +94,7 @@
     width: 0;
     height: 0;
     content: "";
-    border-top: 7px solid #0d77b5;
+    border-top: 7px solid hsl(202, 79%, 38%);
   }
 
 .comment-form {

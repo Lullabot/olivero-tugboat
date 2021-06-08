@@ -62,7 +62,7 @@
 }
 
 .mobile-nav-button:focus {
-    outline: solid 2px #0d77b5;
+    outline: solid 2px hsl(202, 79%, 38%);
   }
 
 .mobile-nav-button:active {
@@ -124,7 +124,7 @@
   display: block;
   width: 2.25rem;
   height: 0.1875rem;
-  background-color: #2494db
+  background-color: hsl(202, 79%, 50%)
 }
 
 [dir="ltr"] .mobile-nav-button__icon:before {
@@ -142,7 +142,7 @@
     height: 0.1875rem;
     content: "";
     transition: all 0.2s;
-    background-color: #2494db;
+    background-color: hsl(202, 79%, 50%);
   }
 
 [dir="ltr"] .mobile-nav-button__icon:after {
@@ -161,7 +161,7 @@
     height: 0.1875rem;
     content: "";
     transition: all 0.2s;
-    background-color: #2494db;
+    background-color: hsl(202, 79%, 50%);
   }
 
 .mobile-nav-button[aria-expanded="true"] .mobile-nav-button__icon {

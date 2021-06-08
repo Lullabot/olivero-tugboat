@@ -132,7 +132,7 @@
     margin-bottom: 0;
     letter-spacing: 0.02em;
     color: #0d1214;
-    border-bottom: 2px solid #2494db;
+    border-bottom: 2px solid hsl(202, 79%, 50%);
     font-family: "metropolis", sans-serif;
     font-size: 0.875rem;
     line-height: 1.125rem
@@ -197,7 +197,7 @@
 .sticky-header {
   z-index: 0;
   margin: 0;
-  border-bottom: 4px solid #2494db;
+  border-bottom: 4px solid hsl(202, 79%, 50%);
 }
 
 /* Properly align VBO checkboxes. */

@@ -69,7 +69,7 @@
   }
 
 .region--sidebar .menu__link--link:hover {
-      color: #2494db;
+      color: hsl(202, 79%, 50%);
     }
 
 .region--sidebar {

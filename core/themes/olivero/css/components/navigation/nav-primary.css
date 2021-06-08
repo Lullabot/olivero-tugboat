@@ -48,7 +48,7 @@
   }
 
 .primary-nav__menu-link:focus {
-    outline: auto 2px #2494db;
+    outline: auto 2px hsl(202, 79%, 50%);
     outline-offset: 2px;
   }
 
@@ -139,7 +139,7 @@
       height: 0;
       content: "";
       /* Intentionally not using CSS logical properties. */
-      border-top: solid 3px #2494db;
+      border-top: solid 3px hsl(202, 79%, 50%);
     }
 
 .primary-nav__menu-link--button.primary-nav__menu-link--has-children:after {
@@ -193,7 +193,7 @@
     transform: scaleX(0);
     transform-origin: left;
     /* Intentionally not using CSS logical properties. */
-    border-top: solid 5px #2494db;
+    border-top: solid 5px hsl(202, 79%, 50%);
   }
 
 .primary-nav__menu-link-inner:hover,
@@ -275,11 +275,11 @@
 }
 
 [dir="ltr"] .primary-nav__menu--level-2 {
-  border-left: solid 18px #2494db;
+  border-left: solid 18px hsl(202, 79%, 50%);
 }
 
 [dir="rtl"] .primary-nav__menu--level-2 {
-  border-right: solid 18px #2494db;
+  border-right: solid 18px hsl(202, 79%, 50%);
 }
 
 .primary-nav__menu--level-2 {

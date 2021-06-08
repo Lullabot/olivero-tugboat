@@ -162,7 +162,7 @@
           height: 3.375rem;
           content: "";
           transform: translate(-50%, -50%);
-          border: solid 2px #2494db;
+          border: solid 2px hsl(202, 79%, 50%);
           border-radius: 0.25rem;
         }
   }

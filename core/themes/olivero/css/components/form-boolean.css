@@ -29,8 +29,8 @@ input[type="radio"] {
 }
 
 input[type="checkbox"]:focus, input[type="radio"]:focus {
-    border: solid 2px #2494db;
-    outline: solid 2px #2494db
+    border: solid 2px hsl(202, 79%, 50%);
+    outline: solid 2px hsl(202, 79%, 50%)
   }
 
 @supports (outline-style: double) {
@@ -44,7 +44,7 @@ input[type="checkbox"]:focus, input[type="radio"]:focus {
     }
 
 input[type="checkbox"]:hover, input[type="radio"]:hover {
-    border-color: #53b0eb;
+    border-color: hsl(202, 79%, 62%);
   }
 
 input[type="checkbox"][disabled], input[type="radio"][disabled] {
@@ -109,9 +109,9 @@ input[type="radio"]:checked {
 
 input[type="radio"]:focus {
     border-width: 2px;
-    border-color: #2494db;
+    border-color: hsl(202, 79%, 50%);
     outline-color: transparent;
-    box-shadow: 0 0 0 2px white, 0 0 0 4px #2494db;
+    box-shadow: 0 0 0 2px white, 0 0 0 4px hsl(202, 79%, 50%);
   }
 
 input[type="radio"].error:focus {

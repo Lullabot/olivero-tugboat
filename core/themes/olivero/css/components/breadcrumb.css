@@ -231,7 +231,7 @@
 
 .breadcrumb__link {
   text-decoration: none;
-  color: #0d77b5
+  color: hsl(202, 79%, 38%)
 }
 
 .breadcrumb__link:hover,

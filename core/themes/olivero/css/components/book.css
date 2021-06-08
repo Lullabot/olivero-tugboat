@@ -49,7 +49,7 @@
   padding-top: 0;
   padding-bottom: 1.125rem;
   list-style: none;
-  border-bottom: solid 1px #0d77b5;
+  border-bottom: solid 1px hsl(202, 79%, 38%);
 }
 
 .book-pager__item {
@@ -93,7 +93,7 @@
   display: inline-flex;
   align-items: center;
   text-decoration: none;
-  color: #0d77b5;
+  color: hsl(202, 79%, 38%);
   font-family: "Lora", "georgia", serif;
   font-size: 1.125rem;
   font-weight: 600;

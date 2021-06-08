@@ -71,7 +71,7 @@
 
 .pager__item--active {
   color: #fff;
-  background-color: #0d77b5;
+  background-color: hsl(202, 79%, 38%);
 }
 
 .pager__link {
@@ -89,8 +89,8 @@
 }
 
 .pager__link:focus {
-  color: #0d77b5;
-  outline: solid 2px #0d77b5;
+  color: hsl(202, 79%, 38%);
+  outline: solid 2px hsl(202, 79%, 38%);
   outline-offset: -2px;
 }
 

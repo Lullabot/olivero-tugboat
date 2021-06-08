@@ -30,7 +30,7 @@
   }
 
 .node--view-mode-teaser .node__meta a {
-      color: #0d77b5;
+      color: hsl(202, 79%, 38%);
       font-weight: bold;
     }
 

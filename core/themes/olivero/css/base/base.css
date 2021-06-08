@@ -43,11 +43,11 @@ body.js-fixed {
 }
 
 a {
-  color: #0d77b5
+  color: hsl(202, 79%, 38%)
 }
 
 a:hover {
-    color: #2494db;
+    color: hsl(202, 79%, 50%);
   }
 
 a:focus {
@@ -162,7 +162,7 @@ ul {
   width: 100%;
   height: 100vh;
   opacity: 0.2;
-  background: #0d77b5;
+  background: hsl(202, 79%, 38%);
 }
 
 .js-overlay-active .overlay {

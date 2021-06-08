@@ -17,7 +17,7 @@
 }
 
 .dropbutton {
-  background-color: #0d77b5;
+  background-color: hsl(202, 79%, 38%);
 }
 
 .js .dropbutton-widget .dropbutton {
@@ -53,13 +53,13 @@
   }
 
 .dropbutton-action a:hover {
-      background-color: #2494db;
+      background-color: hsl(202, 79%, 50%);
     }
 
 .dropbutton-action a:focus {
-      outline: 2px solid #53b0eb;
+      outline: 2px solid hsl(202, 79%, 62%);
       outline-offset: 2px;
-      background-color: #2494db;
+      background-color: hsl(202, 79%, 50%);
     }
 
 .open .dropbutton-action:not(:last-child) {
@@ -67,7 +67,7 @@
 }
 
 .js .dropbutton-action a:focus {
-  outline: 2px solid #53b0eb;
+  outline: 2px solid hsl(202, 79%, 62%);
 }
 
 [dir="ltr"] .dropbutton-toggle {
@@ -79,17 +79,17 @@
 }
 
 .dropbutton-toggle {
-  background-color: #0d77b5
+  background-color: hsl(202, 79%, 38%)
 }
 
 .dropbutton-toggle:hover {
-    background-color: #2494db;
+    background-color: hsl(202, 79%, 50%);
   }
 
 .dropbutton-toggle button:focus {
-    outline: solid 2px #53b0eb;
+    outline: solid 2px hsl(202, 79%, 62%);
     outline-offset: 2px;
-    background-color: #2494db;
+    background-color: hsl(202, 79%, 50%);
   }
 
 .dropbutton-arrow {

@@ -38,7 +38,7 @@
           height: 3.375rem;
           content: "";
           transform: translate(-50%, -50%);
-          border: solid 2px #2494db;
+          border: solid 2px hsl(202, 79%, 50%);
           border-radius: 0.25rem;
         }
       [dir="ltr"] body:not(.is-always-mobile-nav) .primary-nav__menu-link--button.primary-nav__menu-link--has-children {
@@ -201,7 +201,7 @@
       transform: translate(-50%, -1.25rem);
       opacity: 0;
       /* Intentionally not using CSS logical properties. */
-      border-top: solid #2494db 9px;
+      border-top: solid hsl(202, 79%, 50%) 9px;
       border-right: solid 1px transparent; /* Transparent borders useful for Windows High Contrast mode. */
       border-bottom: solid 1px transparent;
       border-left: solid 1px transparent;
@@ -270,7 +270,7 @@ body:not(.is-always-mobile-nav) {
       opacity: 0;
       /* Intentionally not using CSS logical properties. */
       border-right: solid 10px transparent;
-      border-bottom: solid 10px #2494db;
+      border-bottom: solid 10px hsl(202, 79%, 50%);
       border-left: solid 10px transparent
     }
 

@@ -43,7 +43,7 @@
     display: inline-block
   }
 .action-links li a {
-      color: #0d77b5;
+      color: hsl(202, 79%, 38%);
     }
 .action-links-item {
   display: inline-block;

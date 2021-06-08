@@ -41,8 +41,8 @@ textarea {
 }
 
 [type="color"]:focus, [type="date"]:focus, [type="datetime-local"]:focus, [type="email"]:focus, [type="file"]:focus, [type="month"]:focus, [type="number"]:focus, [type="password"]:focus, [type="search"]:focus, [type="tel"]:focus, [type="text"]:focus, [type="time"]:focus, [type="url"]:focus, [type="week"]:focus, textarea:focus {
-    border: solid 2px #2494db;
-    outline: solid 2px #2494db
+    border: solid 2px hsl(202, 79%, 50%);
+    outline: solid 2px hsl(202, 79%, 50%)
   }
 
 @supports (outline-style: double) {

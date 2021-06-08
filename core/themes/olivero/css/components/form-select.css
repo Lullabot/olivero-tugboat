@@ -46,8 +46,8 @@ select {
 }
 
 select:focus {
-    border: solid 2px #2494db;
-    outline: solid 2px #2494db
+    border: solid 2px hsl(202, 79%, 50%);
+    outline: solid 2px hsl(202, 79%, 50%)
   }
 
 @supports (outline-style: double) {

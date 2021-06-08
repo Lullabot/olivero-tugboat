@@ -46,7 +46,7 @@
   padding-bottom: 0.5625rem;
 
   /* @todo - #0d7ab8 isn't currently a variable. */
-  background-image: linear-gradient(160deg, #2494db 0%, #0d7ab8 78.66%)
+  background-image: linear-gradient(160deg, hsl(202, 79%, 50%) 0%, #0d7ab8 78.66%)
 }
 
 @media (min-width: 31.25rem) {
@@ -113,7 +113,7 @@
   }
 
 [dir="rtl"] .site-branding {
-  background-image: linear-gradient(-160deg, #2494db 0%, #0d7ab8 78.66%);
+  background-image: linear-gradient(-160deg, hsl(202, 79%, 50%) 0%, #0d7ab8 78.66%);
 }
 
 .site-branding--bg-gray {
@@ -219,7 +219,7 @@
 
 .site-branding--bg-gray .site-branding__text,
 .site-branding--bg-white .site-branding__text {
-  color: #2494db;
+  color: hsl(202, 79%, 50%);
 }
 
 [dir="ltr"] .site-branding__logo + .site-branding__text {

@@ -50,9 +50,9 @@
 }
 
 .text-content a, .cke_editable a {
-    color: #0d77b5;
-    -webkit-text-decoration-color: #0d77b5;
-    text-decoration-color: #0d77b5;
+    color: hsl(202, 79%, 38%);
+    -webkit-text-decoration-color: hsl(202, 79%, 38%);
+    text-decoration-color: hsl(202, 79%, 38%);
     text-decoration-thickness: 2px;
     word-wrap: break-word
   }
@@ -62,7 +62,7 @@
 .text-content a, .cke_editable a {
       transition: box-shadow 0.3s cubic-bezier(0.55, 0.085, 0, 0.99);
       text-decoration: none;
-      box-shadow: inset 0 -2px 0 0 #2494db
+      box-shadow: inset 0 -2px 0 0 hsl(202, 79%, 50%)
   }
 
       .text-content a:hover, .cke_editable a:hover {
@@ -171,7 +171,7 @@
       position: absolute;
       top: 0;
       content: "“";
-      color: #53b0eb;
+      color: hsl(202, 79%, 62%);
       font-size: 3.375rem;
     }
 

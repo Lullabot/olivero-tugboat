@@ -54,7 +54,18 @@
 
   /* Width of a grid column at various breakpoints */
 
-  /* Layout helpers */ /* Black */ /* Black 1 */ /* Black 2 */ /* Black 3 */ /* Gray Dark */ /* Gray Dark 2 */ /* Gray medium */ /* Gray medium 1 */ /* Gray medium 2 */ /* Black 4 */ /* Gray light */ /* Gray light 1 */ /* Gray light 2 */ /* Blue dark */ /* Blue dark 2 */ /* Blue medium */ /* Blue bright */ /* Blue bright 5 */ /* White */ /* Red */ /* Gold */ /* Green */
+  /* Layout helpers */ /* Black */ /* Black 1 */ /* Black 2 */ /* Black 3 */ /* Gray Dark */ /* Gray Dark 2 */ /* Gray medium */ /* Gray medium 1 */ /* Gray medium 2 */ /* Black 4 */ /* Gray light */ /* Gray light 1 */ /* Gray light 2 */
+
+  /*
+    Original color mappings.
+
+  --color--blue-20: #0d77b5; - Blue dark - hsl(202, 87%, 38%)
+  --color--blue-30: #3d92c4; - Blue dark 2 - hsl(202, 53%, 50%)
+  --color--blue-50: #2494db; - Blue medium - hsl(203, 72%, 50%)
+  --color--blue-70: #53b0eb; - Blue bright - hsl(203, 79%, 62%)
+  --color--blue-90: #ddeffb; - Blue bright 5 - hsl(204, 79%, 93%)
+
+  */ /* Blue dark */ /* Blue dark 2 */ /* Blue medium */ /* Blue bright */ /* Blue bright 5 */ /* White */ /* Red */ /* Gold */ /* Green */
 
   /* Header */
 
