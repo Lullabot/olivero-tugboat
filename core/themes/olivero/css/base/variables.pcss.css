@@ -142,7 +142,6 @@
   --color--blue-hue: 202;
   --color--blue-saturation: 79%;
   --color--blue-20: hsl(var(--color--blue-hue), var(--color--blue-saturation), 38%); /* Blue dark */
-  --color--blue-30: hsl(var(--color--blue-hue), var(--color--blue-saturation), 45%); /* Blue dark 2 */
   --color--blue-50: hsl(var(--color--blue-hue), var(--color--blue-saturation), 50%); /* Blue medium */
   --color--blue-70: hsl(var(--color--blue-hue), var(--color--blue-saturation), 62%); /* Blue bright */
   --color--blue-90: hsl(var(--color--blue-hue), var(--color--blue-saturation), 93%); /* Blue bright 5 */
