@@ -29,8 +29,8 @@ textarea {
   max-width: 100%;
   min-height: 3.375rem;
   padding: 0 1.125rem;
-  color: #0d1214;
-  border: 1px solid #7e96a7;
+  color: hsl(201, 15%, 6%);
+  border: 1px solid hsl(201, 15%, 57%);
   border-radius: 0.1875rem;
   background-color: #fff;
   font-family: inherit;
@@ -60,8 +60,8 @@ textarea {
   }
 
 [type="color"][disabled], [type="date"][disabled], [type="datetime-local"][disabled], [type="email"][disabled], [type="file"][disabled], [type="month"][disabled], [type="number"][disabled], [type="password"][disabled], [type="search"][disabled], [type="tel"][disabled], [type="text"][disabled], [type="time"][disabled], [type="url"][disabled], [type="week"][disabled], textarea[disabled] {
-    color: #7e96a7;
-    background-color: #f1f4f7;
+    color: hsl(201, 15%, 57%);
+    background-color: hsl(201, 15%, 96%);
   }
 
 [type="color"].error, [type="date"].error, [type="datetime-local"].error, [type="email"].error, [type="file"].error, [type="month"].error, [type="number"].error, [type="password"].error, [type="search"].error, [type="tel"].error, [type="text"].error, [type="time"].error, [type="url"].error, [type="week"].error, textarea.error {

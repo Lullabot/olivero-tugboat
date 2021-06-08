@@ -71,8 +71,8 @@
 .button:disabled,
   .button.is-disabled {
     cursor: default;
-    color: #d7e1e8;
-    border-color: #d7e1e8;
+    color: hsl(201, 15%, 88%);
+    border-color: hsl(201, 15%, 88%);
   }
 
 .button {
@@ -150,7 +150,7 @@
 .button--primary:disabled,
   .button--primary.is-disabled {
     color: #fff;
-    background-color: #d7e1e8;
+    background-color: hsl(201, 15%, 88%);
   }
 
 #drupal-off-canvas input[type="submit"].button {

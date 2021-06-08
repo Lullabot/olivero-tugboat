@@ -11,19 +11,19 @@
  */
 
 .draggable:hover {
-  background-color: #f7f9fa;
+  background-color: hsl(201, 15%, 97%);
 }
 
 .draggable.drag {
-  background-color: #f1f4f7;
+  background-color: hsl(201, 15%, 96%);
 }
 
 .draggable.drag-previous {
-  background-color: #e7edf1;
+  background-color: hsl(201, 15%, 93%);
 }
 
 .drag-previous a {
-  color: #313637; /* Ensure proper contrast. */
+  color: hsl(201, 15%, 20%); /* Ensure proper contrast. */
 }
 
 a.tabledrag-handle,

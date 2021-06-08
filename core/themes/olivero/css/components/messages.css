@@ -56,7 +56,7 @@
   padding-bottom: 1.125rem;
   color: #fff;
   outline: solid 1px transparent;
-  background-color: #0d1214
+  background-color: hsl(201, 15%, 6%)
 }
 
 .messages * {
@@ -204,7 +204,7 @@
     width: 2.0625rem;
     height: 2px;
     content: "";
-    background-color: #7e96a7;
+    background-color: hsl(201, 15%, 57%);
   }
 
 .messages__close:before {

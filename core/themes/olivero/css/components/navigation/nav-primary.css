@@ -37,7 +37,7 @@
 .primary-nav__menu-link {
   flex-grow: 1;
   text-decoration: none;
-  color: #0d1214;
+  color: hsl(201, 15%, 6%);
   font-size: 1.75rem;
   font-weight: bold;
   line-height: 2.25rem
@@ -71,7 +71,7 @@
 .primary-nav__menu-link--nolink {
   padding-top: 0.5625rem;
   padding-bottom: 0.5625rem;
-  color: #6e7172;
+  color: hsl(201, 15%, 44%);
   font-weight: normal;
 }
 

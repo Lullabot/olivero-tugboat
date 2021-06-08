@@ -15,9 +15,9 @@
   margin-top: 1.125rem;
   margin-bottom: 1.125rem;
   color: inherit;
-  border: 1px solid #e7edf1;
+  border: 1px solid hsl(201, 15%, 93%);
   border-radius: 0.1875rem;
-  box-shadow: 0 1px 4px #d7e1e8;
+  box-shadow: 0 1px 4px hsl(201, 15%, 88%);
 }
 
 /* Details summary styles */
@@ -50,7 +50,7 @@
   -ms-hyphens: auto;
   hyphens: auto;
   color: inherit;
-  background-color: #f7f9fa;
+  background-color: hsl(201, 15%, 97%);
   font-size: 1.125rem;
   font-weight: 700;
   line-height: 1.125rem;
@@ -117,7 +117,7 @@
 /* Details summary, hover state */
 
 .olivero-details__summary:hover {
-  background-color: #e7edf1;
+  background-color: hsl(201, 15%, 93%);
 }
 
 /* Details summary, focus and active states */
@@ -192,7 +192,7 @@
   transition: background-color 0.12s ease-in-out;
   text-decoration: none;
   color: inherit;
-  background-color: #f7f9fa;
+  background-color: hsl(201, 15%, 97%);
 }
 
 .collapse-processed > .olivero-details__summary .details-title:focus {
@@ -200,7 +200,7 @@
 }
 
 .collapse-processed > .olivero-details__summary .details-title:hover {
-  background-color: #e7edf1;
+  background-color: hsl(201, 15%, 93%);
 }
 
 @media screen and (-ms-high-contrast: active) {
@@ -247,7 +247,7 @@
 
 .olivero-details__description {
   margin-bottom: 1.125rem;
-  color: #313637;
+  color: hsl(201, 15%, 20%);
   font-size: 0.8125rem;
   line-height: 1.125rem;
 }

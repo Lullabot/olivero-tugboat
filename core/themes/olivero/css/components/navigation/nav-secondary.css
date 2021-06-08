@@ -139,7 +139,7 @@
         height: 2.25rem;
         content: "";
         transform: translateY(-50%);
-        background-color: #d7e1e8;
+        background-color: hsl(201, 15%, 88%);
       }
 
     [dir="ltr"] body:not(.is-always-mobile-nav) .secondary-nav__menu-item:not(:last-child) {

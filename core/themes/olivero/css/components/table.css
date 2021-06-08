@@ -17,7 +17,7 @@
   margin-top: 2.25rem;
   margin-bottom: 2.25rem;
   border-spacing: 0;
-  color: #313637;
+  color: hsl(201, 15%, 20%);
   border: 0;
   border-collapse: collapse;
   font-family: "metropolis", sans-serif;
@@ -35,7 +35,7 @@
 
 .forum table caption, .text-content table caption, .views-table caption, .draggable-table caption {
     margin-bottom: 1.125rem;
-    color: #313637;
+    color: hsl(201, 15%, 20%);
     font-family: "Lora", "georgia", serif;
     font-size: 0.875rem;
     font-style: italic;
@@ -131,7 +131,7 @@
     margin-top: 0;
     margin-bottom: 0;
     letter-spacing: 0.02em;
-    color: #0d1214;
+    color: hsl(201, 15%, 6%);
     border-bottom: 2px solid hsl(202, 79%, 50%);
     font-family: "metropolis", sans-serif;
     font-size: 0.875rem;
@@ -168,7 +168,7 @@
 
 .forum table td, .text-content table td, .views-table td, .draggable-table td {
     white-space: normal;
-    border-bottom: 2px solid #98abb9;
+    border-bottom: 2px solid hsl(201, 15%, 66%);
   }
 
 .forum table th.checkbox,

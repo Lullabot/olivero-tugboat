@@ -11,17 +11,17 @@
  */
 
 :-ms-input-placeholder {
-  color: #7e96a7;
+  color: hsl(201, 15%, 57%);
 }
 
 ::placeholder {
-  color: #7e96a7;
+  color: hsl(201, 15%, 57%);
 }
 
 /* IE 10 and 11 needs this set as important. */
 
 :-ms-input-placeholder {
-  color: #7e96a7 !important;
+  color: hsl(201, 15%, 57%) !important;
 }
 
 /**
@@ -92,7 +92,7 @@ tr .form-item,
 
 .form-item__label.is-disabled {
   cursor: default;
-  color: #afb8be;
+  color: hsl(201, 15%, 72%);
 }
 
 /* Form required star icon */

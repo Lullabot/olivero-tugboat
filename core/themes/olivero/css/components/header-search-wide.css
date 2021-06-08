@@ -57,11 +57,11 @@
 }
 
 [dir="ltr"] .block-search-wide__wrapper {
-  border-left: solid 90px #313637;
+  border-left: solid 90px hsl(201, 15%, 20%);
 }
 
 [dir="rtl"] .block-search-wide__wrapper {
-  border-right: solid 90px #313637;
+  border-right: solid 90px hsl(201, 15%, 20%);
 }
 
 .block-search-wide__wrapper {
@@ -332,7 +332,7 @@
   width: 3.375rem;
   height: 6.75rem;
   cursor: pointer;
-  color: #0d1214; /* Affects SVG search icon. */
+  color: hsl(201, 15%, 6%); /* Affects SVG search icon. */
   border: 0;
   background: transparent;
   -webkit-appearance: none

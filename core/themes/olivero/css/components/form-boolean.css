@@ -17,7 +17,7 @@ input[type="radio"] {
   height: 1.6875rem;
   margin: 0;
   vertical-align: middle;
-  border: 1px solid #7e96a7;
+  border: 1px solid hsl(201, 15%, 57%);
   border-radius: 0.1875rem;
   background-color: #fff;
   background-repeat: no-repeat;
@@ -48,11 +48,11 @@ input[type="checkbox"]:hover, input[type="radio"]:hover {
   }
 
 input[type="checkbox"][disabled], input[type="radio"][disabled] {
-    background-color: #f1f4f7
+    background-color: hsl(201, 15%, 96%)
   }
 
 input[type="checkbox"][disabled]:hover, input[type="radio"][disabled]:hover {
-      border-color: #7e96a7;
+      border-color: hsl(201, 15%, 57%);
     }
 
 input[type="checkbox"][disabled]:checked, input[type="radio"][disabled]:checked {

@@ -11,7 +11,7 @@
  */
 
 .comment--level-1 {
-  border-top: 2px solid #e7edf1
+  border-top: 2px solid hsl(201, 15%, 93%)
 }
 
 .comment--level-1 ~ .comment--level-1 {
@@ -188,7 +188,7 @@
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 50%;
-  background-color: #e7edf1
+  background-color: hsl(201, 15%, 93%)
 }
 
 .add-comment__picture *:not(img), .comment__picture *:not(img) {
@@ -288,7 +288,7 @@
 
 .comment__time {
   margin: 0;
-  color: #6e7172;
+  color: hsl(201, 15%, 44%);
   font-family: "metropolis", sans-serif;
   font-size: 0.875rem;
   line-height: 1.125rem;
@@ -311,11 +311,11 @@
 }
 
 [dir="ltr"] .indented > .comment:not(:last-of-type):not(.has-children):before {
-    border-left: solid 1px #e7edf1
+    border-left: solid 1px hsl(201, 15%, 93%)
 }
 
 [dir="rtl"] .indented > .comment:not(:last-of-type):not(.has-children):before {
-    border-right: solid 1px #e7edf1
+    border-right: solid 1px hsl(201, 15%, 93%)
 }
 
 .indented > .comment:not(:last-of-type):not(.has-children):before {
@@ -386,7 +386,7 @@
   padding-top: 0;
   padding-bottom: 0;
   cursor: pointer;
-  color: #313637;
+  color: hsl(201, 15%, 20%);
   border: 0;
   background: none;
   font-size: 0.875rem;

@@ -12,7 +12,7 @@
 
 .text-content,
 .cke_editable {
-  color: #313637;
+  color: hsl(201, 15%, 20%);
   font-family: "Lora", "georgia", serif;
   line-height: 1.6875rem
 }
@@ -98,7 +98,7 @@
     }
 
 .text-content code, .cke_editable code {
-    background-color: #f7f9fa;
+    background-color: hsl(201, 15%, 97%);
   }
 
 [dir="ltr"] .text-content pre code,[dir="ltr"]  .cke_editable pre code {
@@ -122,7 +122,7 @@
     overflow: auto;
     padding-top: 1.125rem;
     padding-bottom: 1.125rem;
-    color: #6e7172;
+    color: hsl(201, 15%, 44%);
   }
 
 [dir="ltr"] .text-content blockquote,[dir="ltr"]  .cke_editable blockquote {
@@ -197,7 +197,7 @@
       width: 0.5625rem;
       height: calc(100% - 1.875rem);
       content: "";
-      background: #f7f9fa;
+      background: hsl(201, 15%, 97%);
     }
 
 @media (min-width: 43.75rem) {

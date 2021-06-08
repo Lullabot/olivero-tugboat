@@ -22,7 +22,7 @@
     height: 0;
     content: "";
     /* Intentionally not using CSS logical properties. */
-    border-top: solid 2px #e7edf1;
+    border-top: solid 2px hsl(201, 15%, 93%);
   }
 
 .node--view-mode-teaser .node__meta {
@@ -139,7 +139,7 @@
 
 .node--view-mode-teaser .node__title {
     margin: 0;
-    color: #0d1214;
+    color: hsl(201, 15%, 6%);
     font-size: 1.5rem;
     line-height: 1.6875rem
   }

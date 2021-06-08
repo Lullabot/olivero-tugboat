@@ -59,7 +59,7 @@
 .search-result__title {
   margin-top: 0;
   margin-bottom: 0;
-  color: #0d1214;
+  color: hsl(201, 15%, 6%);
   font-size: 1.25rem;
   line-height: 1.6875rem
 }
@@ -107,7 +107,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 1.125rem;
-  color: #6e7172;
+  color: hsl(201, 15%, 44%);
   font-size: 0.875rem;
   line-height: 1.125rem
 }
@@ -129,7 +129,7 @@
     height: 0;
     content: "";
     /* Intentionally not using CSS logical properties. */
-    border-top: solid 2px #e7edf1;
+    border-top: solid 2px hsl(201, 15%, 93%);
   }
 
 .search-results__item:last-child {
