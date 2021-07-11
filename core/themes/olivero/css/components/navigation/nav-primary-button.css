@@ -42,7 +42,7 @@
 }
 
 .primary-nav__button-toggle:focus {
-    outline: auto 2px #2494db;
+    outline: auto 2px hsl(202, 79%, 50%);
     outline-offset: 2px;
   }
 
@@ -71,7 +71,7 @@
       content: "";
       transform: translate(-50%, -50%);
       /* Intentionally not using CSS logical properties. */
-      border-top: solid 3px #2494db;
+      border-top: solid 3px hsl(202, 79%, 50%);
     }
 
 .primary-nav__button-toggle .icon--menu-toggle:after {
@@ -116,7 +116,7 @@
       }
 
         body:not(.is-always-mobile-nav) .primary-nav__button-toggle:focus .icon--menu-toggle {
-          border: solid 2px #0d77b5;
+          border: solid 2px hsl(202, 79%, 38%);
         }
 
       body:not(.is-always-mobile-nav) .primary-nav__button-toggle:active {

@@ -13,11 +13,11 @@
 .progress__track {
   overflow: hidden;
   height: 1.125rem;
-  border: 1px solid #0d77b5;
+  border: 1px solid hsl(202, 79%, 38%);
   border-radius: 0.1875rem;
 }
 
 .progress__bar {
   height: 1.125rem;
-  background-color: #0d77b5;
+  background-color: hsl(202, 79%, 38%);
 }

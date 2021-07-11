@@ -12,8 +12,8 @@
 
 .site-footer {
   position: relative; /* stack above left social bar */
-  color: #9ea0a1;
-  background: linear-gradient(180deg, #0c0d0e 0%, #171e23 100%)
+  color: hsl(201, 15%, 63%);
+  background: linear-gradient(180deg, hsl(201, 15%, 5%) 0%, hsl(201, 15%, 11%) 100%)
 }
 
 [dir="ltr"] .site-footer .menu {

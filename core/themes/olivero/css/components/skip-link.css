@@ -37,7 +37,7 @@
   text-decoration: none;
   color: #fff;
   outline: 0;
-  background-color: #0d1214
+  background-color: hsl(201, 15%, 6%)
 }
 
 .skip-link:after {

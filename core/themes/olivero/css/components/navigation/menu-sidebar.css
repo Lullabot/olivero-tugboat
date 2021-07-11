@@ -63,17 +63,17 @@
       width: 4.5rem;
       height: 0;
       content: "";
-      border-top: solid 2px #e7edf1;
+      border-top: solid 2px hsl(201, 15%, 93%);
     }
 
 .menu--sidebar .menu__link--link {
     text-decoration: none;
-    color: #0d1214;
+    color: hsl(201, 15%, 6%);
     font-weight: 600
   }
 
 .menu--sidebar .menu__link--link:hover {
-      color: #2494db;
+      color: hsl(202, 79%, 50%);
     }
 
 .menu--sidebar {

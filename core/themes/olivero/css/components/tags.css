@@ -26,7 +26,7 @@
 .field--tags__label {
   margin: 0;
   letter-spacing: 0.02em;
-  color: #6e7172;
+  color: hsl(201, 15%, 44%);
   font-size: 0.875rem;
   font-weight: 600;
   line-height: 1.6
@@ -140,7 +140,7 @@
   align-items: center;
   text-decoration: none;
   letter-spacing: 0.02em;
-  color: #0d77b5;
+  color: hsl(202, 79%, 38%);
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.5;
@@ -167,5 +167,5 @@
     margin-bottom: 4.5rem;
     padding-top: 1.6875rem;
     padding-bottom: 1.6875rem;
-    background-color: #f7f9fa;
+    background-color: hsl(201, 15%, 97%);
   }

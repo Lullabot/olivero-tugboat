@@ -93,9 +93,9 @@ html:not(.js) .tabs__tab,
   transition: background-color 0.2s;
   text-decoration: none;
   letter-spacing: 1px;
-  color: #6e7172;
-  border: 1px solid #e7edf1;
-  background-color: #f7f9fa;
+  color: hsl(201, 15%, 44%);
+  border: 1px solid hsl(201, 15%, 93%);
+  background-color: hsl(201, 15%, 97%);
   font-size: 0.875rem;
 }
 .tabs--secondary .tabs__link {
@@ -111,15 +111,15 @@ html:not(.js) .tabs__tab,
   }
 .tabs__link:focus {
   position: relative;
-  outline: solid 3px #2494db;
+  outline: solid 3px hsl(202, 79%, 50%);
   outline-offset: -3px;
 }
 .tabs__link:hover {
-  background-color: #e7edf1;
+  background-color: hsl(201, 15%, 93%);
 }
 .tabs__link.is-active {
   position: relative;
-  color: #0d1214;
+  color: hsl(201, 15%, 6%);
   font-weight: 600
 }
 [dir="ltr"] .tabs__link.is-active:after {
@@ -129,10 +129,10 @@ html:not(.js) .tabs__tab,
     right: -1px
 }
 [dir="ltr"] .tabs__link.is-active:after {
-    border-left: 6px solid #2494db
+    border-left: 6px solid hsl(202, 79%, 50%)
 }
 [dir="rtl"] .tabs__link.is-active:after {
-    border-right: 6px solid #2494db
+    border-right: 6px solid hsl(202, 79%, 50%)
 }
 .tabs__link.is-active:after {
     position: absolute;
@@ -156,7 +156,7 @@ html:not(.js) .tabs__tab,
     .tabs__link.is-active:after {
       width: 100%;
       height: auto;
-      border-top: 6px solid #2494db;
+      border-top: 6px solid hsl(202, 79%, 50%);
     }
   }
 [dir="ltr"] .tabs__trigger {
@@ -179,15 +179,15 @@ html:not(.js) .tabs__tab,
   margin-top: 0;
   margin-bottom: 0;
   cursor: pointer;
-  border: solid 1px #e7edf1;
-  background-color: #f7f9fa
+  border: solid 1px hsl(201, 15%, 93%);
+  background-color: hsl(201, 15%, 97%)
 }
 .tabs__trigger:hover {
-    background-color: #e7edf1;
+    background-color: hsl(201, 15%, 93%);
   }
 .tabs__trigger:focus {
     position: relative;
-    border-color: #2494db;
+    border-color: hsl(202, 79%, 50%);
     outline: none;
   }
 @media (min-width: 43.75rem) {
@@ -216,7 +216,7 @@ html:not(.js) .tabs__trigger {
     display: block;
     width: 100%;
     transition: transform 0.2s, opacity 0.2s, top 0.2s;
-    border-top: solid 2px #2494db
+    border-top: solid 2px hsl(202, 79%, 50%)
   }
 .tabs__trigger-icon > span:nth-child(1) {
       top: 0;

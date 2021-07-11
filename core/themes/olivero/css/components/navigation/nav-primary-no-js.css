@@ -78,8 +78,8 @@ html:not(.js) {
       padding-top: 2.25rem;
       padding-bottom: 0;
       transform: none;
-      border: solid 1px #e7edf1 !important;
-      box-shadow: 0 0 36px #d7e1e8;
+      border: solid 1px hsl(201, 15%, 93%) !important;
+      box-shadow: 0 0 36px hsl(201, 15%, 88%);
     }
 
     html[dir="ltr"]:not(.js) .primary-nav__menu--level-2 {
@@ -167,8 +167,8 @@ html:not(.js) {
         padding-top: 2.25rem;
         padding-bottom: 0;
         transform: none;
-        border: solid 1px #e7edf1 !important;
-        box-shadow: 0 0 36px #d7e1e8;
+        border: solid 1px hsl(201, 15%, 93%) !important;
+        box-shadow: 0 0 36px hsl(201, 15%, 88%);
       }
 
       html[dir="ltr"]:not(.js) body.is-always-mobile-nav .primary-nav__menu--level-2 {

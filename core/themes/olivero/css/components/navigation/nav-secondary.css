@@ -139,7 +139,7 @@
         height: 2.25rem;
         content: "";
         transform: translateY(-50%);
-        background-color: #d7e1e8;
+        background-color: hsl(201, 15%, 88%);
       }
 
     [dir="ltr"] body:not(.is-always-mobile-nav) .secondary-nav__menu-item:not(:last-child) {
@@ -162,7 +162,7 @@
           height: 3.375rem;
           content: "";
           transform: translate(-50%, -50%);
-          border: solid 2px #2494db;
+          border: solid 2px hsl(202, 79%, 50%);
           border-radius: 0.25rem;
         }
   }
