@@ -50,7 +50,7 @@
   width: 1.125rem;
   height: 1.125rem;
   border-width: 2px;
-  border-color: #2494db transparent #2494db #2494db;
+  border-color: hsl(202, 79%, 50%) transparent hsl(202, 79%, 50%) hsl(202, 79%, 50%);
 }
 
 [dir="ltr"] .ajax-progress-throbber .message {
@@ -86,7 +86,7 @@
   width: 3.5rem;
   height: 3.5rem;
   margin: -1.75rem;
-  border: 1px solid #afb8be;
+  border: 1px solid hsl(201, 15%, 72%);
   border-radius: 3.5rem;
   background-color: #fff;
   box-shadow: 0 0.25rem 0.625rem rgba(34, 35, 48, 0.1) /* LTR */
@@ -122,7 +122,7 @@
 .ajax-progress-fullscreen:before {
   animation: olivero-throbber 0.75s linear infinite;
   border-style: solid dotted solid solid;
-  border-color: #2494db transparent #2494db #2494db;
+  border-color: hsl(202, 79%, 50%) transparent hsl(202, 79%, 50%) hsl(202, 79%, 50%);
   border-radius: 50%;
 }
 

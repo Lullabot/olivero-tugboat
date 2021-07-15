@@ -40,7 +40,7 @@
   list-style: none;
   border-width: 1px;
   border-style: solid;
-  border-color: #e7edf1
+  border-color: hsl(201, 15%, 93%)
 }
 
 @media (min-width: 62.5rem) {
@@ -81,7 +81,7 @@
 }
 
 .vertical-tabs__menu-item:nth-child(n+2) {
-  border-top: 1px solid #e7edf1;
+  border-top: 1px solid hsl(201, 15%, 93%);
 }
 
 [dir="ltr"] .vertical-tabs__menu-item a {
@@ -105,13 +105,13 @@
   padding-top: 0.5625rem;
   padding-bottom: 0.5625rem;
   text-decoration: none;
-  background-color: #e7edf1
+  background-color: hsl(201, 15%, 93%)
 }
 
 .vertical-tabs__menu-item a:focus,
   .vertical-tabs__menu-item a:hover,
   .vertical-tabs__menu-item a:active {
-    background-color: #f7f9fa;
+    background-color: hsl(201, 15%, 97%);
   }
 
 .vertical-tabs__menu-item.is-selected {

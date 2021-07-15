@@ -14,11 +14,11 @@
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #5d7585
+  color: hsl(201, 15%, 44%)
 }
 
 .feed-icon:hover {
-    color: #2494db;
+    color: hsl(202, 79%, 50%);
   }
 
 .feed-icon__label {
@@ -44,7 +44,7 @@
   width: 1.6875rem;
   height: 1.6875rem;
   color: #fff;
-  background-color: #2494db
+  background-color: hsl(202, 79%, 50%)
 }
 
 .feed-icon__icon svg {

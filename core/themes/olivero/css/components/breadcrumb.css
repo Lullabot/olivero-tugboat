@@ -190,11 +190,11 @@
 }
 
 [dir="ltr"] .breadcrumb__item:nth-child(n+2):before {
-    border-right: 2px solid #5d7585
+    border-right: 2px solid hsl(201, 15%, 44%)
 }
 
 [dir="rtl"] .breadcrumb__item:nth-child(n+2):before {
-    border-left: 2px solid #5d7585
+    border-left: 2px solid hsl(201, 15%, 44%)
 }
 
 .breadcrumb__item:nth-child(n+2):before {
@@ -203,7 +203,7 @@
     height: 0.5rem;
     content: "";
     transform: rotate(45deg); /* LTR */
-    border-top: 2px solid #5d7585;
+    border-top: 2px solid hsl(201, 15%, 44%);
   }
 
 [dir="ltr"] .breadcrumb__item:last-child {
@@ -231,7 +231,7 @@
 
 .breadcrumb__link {
   text-decoration: none;
-  color: #0d77b5
+  color: hsl(202, 79%, 38%)
 }
 
 .breadcrumb__link:hover,

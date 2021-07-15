@@ -13,7 +13,7 @@
 .dropbutton-wrapper.open {
   position: relative;
   z-index: 100; /* Ensure this appears above all other dropbuttons. */
-  filter: drop-shadow(0 2px 2px #e3e3e5);
+  filter: drop-shadow(0 2px 2px hsl(201, 15%, 89%));
 }
 
 [dir="ltr"] .dropbutton-widget {
@@ -91,11 +91,11 @@
   cursor: pointer;
   border-color: transparent;
   border-radius: 0 0.1875rem 0.1875rem 0; /* LTR */
-  background: #e3e3e5
+  background: hsl(201, 15%, 89%)
 }
 
 .dropbutton-toggle button:focus {
-    outline: solid 2px #0d77b5;
+    outline: solid 2px hsl(202, 79%, 38%);
     outline-offset: -2px;
   }
 
@@ -105,8 +105,8 @@
     height: 0.5625rem;
     content: "";
     transform: translateY(-25%) rotate(45deg);
-    border-right: solid 2px #0d77b5;
-    border-bottom: solid 2px #0d77b5;
+    border-right: solid 2px hsl(202, 79%, 38%);
+    border-bottom: solid 2px hsl(202, 79%, 38%);
   }
 
 [dir="rtl"] .dropbutton-toggle button {
@@ -124,7 +124,7 @@
 .dropbutton-action:first-child {
     border: solid 1px transparent;
     border-radius: 0.1875rem 0 0 0.1875rem; /* LTR */
-    background: #e3e3e5;
+    background: hsl(201, 15%, 89%);
   }
 
 .dropbutton-action a {
@@ -133,12 +133,12 @@
     margin-bottom: -2px; /* Account for borders. */
     padding: 0 0.5625rem;
     text-decoration: none;
-    color: #313637;
+    color: hsl(201, 15%, 20%);
     font-weight: 600
   }
 
 .dropbutton-action a:focus {
-      border: solid 2px #0d77b5;
+      border: solid 2px hsl(202, 79%, 38%);
       outline: 0
 
       /* Negate specific IE rules. */
@@ -148,7 +148,7 @@
 
 .dropbutton-action a:focus {
         border: 0;
-        outline: solid 2px #0d77b5;
+        outline: solid 2px hsl(202, 79%, 38%);
         outline-offset: -1px /* Overlap parent container by 1px. */
     }
       }
@@ -174,13 +174,13 @@
 .secondary-action {
   visibility: hidden;
   width: calc(100% + 1.6875rem);
-  border-right: 1px solid #e3e3e5;
-  border-left: 1px solid #e3e3e5;
+  border-right: 1px solid hsl(201, 15%, 89%);
+  border-left: 1px solid hsl(201, 15%, 89%);
   background: #fff
 }
 
 .secondary-action:last-child {
-    border-bottom: 1px solid #e3e3e5;
+    border-bottom: 1px solid hsl(201, 15%, 89%);
   }
 
 .dropbutton-wrapper.open .dropbutton-toggle button:before {

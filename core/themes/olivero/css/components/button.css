@@ -38,8 +38,8 @@
   cursor: pointer;
   text-align: center;
   text-decoration: none;
-  color: #0d77b5;
-  border: solid 2px #0d77b5;
+  color: hsl(202, 79%, 38%);
+  border: solid 2px hsl(202, 79%, 38%);
   border-radius: 0.1875rem;
   background-color: #fff;
   font-family: inherit;
@@ -54,25 +54,25 @@
 .button:hover,
   .button:focus {
     text-decoration: none;
-    color: #2494db;
-    border-color: #2494db;
+    color: hsl(202, 79%, 50%);
+    border-color: hsl(202, 79%, 50%);
   }
 
 .button:focus {
-    outline: 2px solid #53b0eb;
+    outline: 2px solid hsl(202, 79%, 62%);
     outline-offset: 2px;
   }
 
 .button:active {
-    color: #0d77b5;
-    border-color: #0d77b5;
+    color: hsl(202, 79%, 38%);
+    border-color: hsl(202, 79%, 38%);
   }
 
 .button:disabled,
   .button.is-disabled {
     cursor: default;
-    color: #d7e1e8;
-    border-color: #d7e1e8;
+    color: hsl(201, 15%, 88%);
+    border-color: hsl(201, 15%, 88%);
   }
 
 .button {
@@ -133,24 +133,24 @@
 
 .button--primary {
   color: #fff;
-  background-color: #0d77b5
+  background-color: hsl(202, 79%, 38%)
 }
 
 .button--primary:hover,
   .button--primary:focus {
     color: #fff;
-    background-color: #2494db;
+    background-color: hsl(202, 79%, 50%);
   }
 
 .button--primary:active {
     color: #fff;
-    background-color: #0d77b5;
+    background-color: hsl(202, 79%, 38%);
   }
 
 .button--primary:disabled,
   .button--primary.is-disabled {
     color: #fff;
-    background-color: #d7e1e8;
+    background-color: hsl(201, 15%, 88%);
   }
 
 .button--icon-back {

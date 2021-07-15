@@ -14,11 +14,11 @@
   margin-top: 0;
   margin-bottom: 1.125rem;
   letter-spacing: 0.02em;
-  color: #6e7172;
+  color: hsl(201, 15%, 44%);
   font-size: 0.875rem;
   line-height: 1.125rem;
 }
 
 .site-footer .block__title {
-  color: #9ea0a1;
+  color: hsl(201, 15%, 63%);
 }

@@ -28,8 +28,8 @@
 
 .entity-moderation-form {
   flex-direction: column;
-  border: 1px solid #e7edf1;
-  background-color: #f7f9fa
+  border: 1px solid hsl(201, 15%, 93%);
+  background-color: hsl(201, 15%, 97%)
 }
 
 .entity-moderation-form select,
