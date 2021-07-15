@@ -44,9 +44,7 @@
   height: 3.375rem;
   padding-top: 0;
   padding-bottom: 0.5625rem;
-
-  /* @todo - #0d7ab8 isn't currently a variable. */
-  background-image: linear-gradient(160deg, hsl(202, 79%, 50%) 0%, #0d7ab8 78.66%)
+  background-image: linear-gradient(160deg, hsl(202, 79%, 50%) 0%, hsl(202, 79%, 38%) 78.66%)
 }
 
 @media (min-width: 31.25rem) {
