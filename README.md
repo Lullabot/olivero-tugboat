@@ -17,7 +17,7 @@ Tugboat will generate visual diffs against the base preview. To do this, you'll 
 
 ## How to update the database, and files (assumes MacOS)
 
-* The tugboat database and files directory can be placed in [Dropbox](https://www.dropbox.com/work/Lullabot/Front-End%20Development/Olivero/Tugboat%20Files) by a user with the appropriate permissions.
+* The tugboat database and files directory can be placed in [Dropbox](https://www.dropbox.com/home/olivero) by a Mike Herchel.
 * To generate a database dump:
   * `drush sql-dump > olivero-db.sql`
   * `gzip olivero-db.sql`
