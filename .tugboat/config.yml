@@ -79,7 +79,7 @@ services:
           site:install minimal
 
         # Import the database into preloaded.
-        wget -O /tmp/olivero_db.sql.gz ${PRELOADED_DB_DUMP}
+        wget -O /tmp/olivero_db.sql.gz ${PRELOADED_D10_DB_DUMP}
         zcat /tmp/olivero_db.sql.gz | vendor/bin/drush --uri=preloaded sql:cli
         rm /tmp/olivero_db.sql.gz
 
@@ -130,6 +130,7 @@ services:
       - /node/4
       - /node/1
       - /node/3
+      - /node/13 # High z-index block
       - /node/31
       - /node/58
       - /node/59
