@@ -28,21 +28,10 @@
     padding-block-end: var(--sp);
   }
 
-  @media (--lg) {
-    min-width: calc((2 * var(--grid-col-width--lg)) + (2 * var(--grid-gap--lg)) + var(--container-padding));
-  }
-
   @media (--nav) {
-    min-width: calc((2 * var(--grid-col-width--nav)) + (2 * var(--grid-gap--nav)) + var(--container-padding-nav));
     min-height: var(--site-header-height-wide);
-    margin-inline-start: calc(-1 * var(--container-padding-nav));
+    margin-inline-start: calc(-1 * var(--container-padding));
     padding-block: 0;
-    padding-inline-start: var(--container-padding-nav);
-    padding-inline-end: var(--container-padding-nav);
-  }
-
-  @media (--grid-max) {
-    min-width: calc((2 * var(--grid-col-width--max)) + (2 * var(--grid-gap--max)) + var(--container-padding-nav));
   }
 }
 
