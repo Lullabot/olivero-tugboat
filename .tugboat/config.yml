@@ -130,6 +130,7 @@ services:
       - /node/4
       - /node/1
       - /node/3
+      - /node/13 # High z-index block
       - /node/31
       - /node/58
       - /node/59
