@@ -42,7 +42,7 @@ services:
         ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
         cd $TUGBOAT_ROOT
         composer install --optimize-autoloader
-        composer require drush/drush
+        composer require drush/drush:10.6.1
 
         # Install Drupal on the minimal site.
         vendor/bin/drush \
