@@ -84,10 +84,10 @@ services:
         rm /tmp/olivero_db.sql.gz
 
         # Set default theme for minimal and standard profiles.
-        drush --uri=minimal theme:enable olivero
-        drush --uri=minimal config:set system.theme default olivero
-        drush --uri=standard theme:enable olivero
-        drush --uri=standard config:set system.theme default olivero
+        # drush --uri=minimal theme:enable olivero
+        # drush --uri=minimal config:set system.theme default olivero
+        # drush --uri=standard theme:enable olivero
+        # drush --uri=standard config:set system.theme default olivero
 
         # Download the files for preloaded.
         wget -O /tmp/olivero_files.zip ${PRELOADED_FILES_ZIP}
