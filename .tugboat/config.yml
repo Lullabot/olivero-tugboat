@@ -42,6 +42,7 @@ services:
         ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
         cd $TUGBOAT_ROOT
         composer install --optimize-autoloader
+        php -v
         composer require drush/drush 11.x-dev
 
         # Install Drupal on the minimal site.
@@ -106,6 +107,7 @@ services:
         export COMPOSER_MEMORY_LIMIT=-1
         cd $TUGBOAT_ROOT
         composer install --optimize-autoloader
+        php -v
         composer require drush/drush 11.x-dev
         composer require drupal/webform:^6
         composer require drupal/form_style
