@@ -120,7 +120,7 @@ services:
         git push origin 10.0.x || true
 
         # Update the preloaded database and clear the cache.
-        drush -y --uri=preloaded updatedb
+        drush -y --uri=preloaded updatedb || true
         drush -y --uri=preloaded cache:rebuild
 
     visualdiffs:
