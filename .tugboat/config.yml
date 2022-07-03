@@ -19,7 +19,7 @@ services:
         export COMPOSER_MEMORY_LIMIT=-1
 
         # Create a Drupal 9 site with Tugboat config.
-        git clone --branch 9.4.x --single-branch --quiet https://git.drupalcode.org/project/drupal.git drupal
+        git clone --branch 9.5.x --single-branch --quiet https://git.drupalcode.org/project/drupal.git drupal
         rm -rf drupal/.git
 
         # Moves all files (including dotfiles) to root of repository.
@@ -27,14 +27,14 @@ services:
         rm -rf drupal/
 
         # Delete existing Drupal branch if exists.
-        git branch -d 9.4.x || true
-        git push origin --delete 9.4.x || true
+        git branch -d 9.5.x || true
+        git push origin --delete 9.5.x || true
 
         # Add Drupal to new branch, and push.
-        git checkout -b 9.4.x
+        git checkout -b 9.5.x
         git add .
         git commit -m "Adding Drupal 9."
-        git push --force origin 9.4.x
+        git push --force origin 9.5.x
 
         cp $TUGBOAT_ROOT/.tugboat/sites.php $TUGBOAT_ROOT/sites/sites.php
 
@@ -117,7 +117,7 @@ services:
         # Add composer files to git
         git add composer.json composer.lock
         git commit -m "Adding updated composer files." || true
-        git push origin 9.4.x || true
+        git push origin 9.5.x || true
 
         # Update the preloaded database and clear the cache.
         drush -y --uri=preloaded updatedb
