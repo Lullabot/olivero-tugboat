@@ -19,7 +19,7 @@ services:
         export COMPOSER_MEMORY_LIMIT=-1
 
         # Create a Drupal 9 site with Tugboat config.
-        git clone --branch 9.5.x --single-branch --quiet https://git.drupalcode.org/project/drupal.git drupal
+        git clone --depth 1 --branch 9.5.x --quiet https://git.drupalcode.org/project/drupal.git drupal
         rm -rf drupal/.git
 
         # Moves all files (including dotfiles) to root of repository.
