@@ -37,6 +37,7 @@ services:
         git push --force origin 9.5.x
 
         cp $TUGBOAT_ROOT/.tugboat/sites.php $TUGBOAT_ROOT/sites/sites.php
+        cp $TUGBOAT_ROOT/.tugboat/custom-development.services.yml $TUGBOAT_ROOT/sites/custom-development.services.yml
 
         # Install Drupal.
         ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
@@ -79,9 +80,7 @@ services:
           site:install minimal
 
         # Import the database into preloaded.
-        wget -O /tmp/olivero_db.sql.gz ${PRELOADED_DB_DUMP}
-        zcat /tmp/olivero_db.sql.gz | vendor/bin/drush --uri=preloaded sql:cli
-        rm /tmp/olivero_db.sql.gz
+        zcat /$TUGBOAT_ROOT/.tugboat/olivero9_db.sql.gz | vendor/bin/drush --uri=preloaded sql:cli
 
         # Set default theme for minimal and standard profiles.
         # drush --uri=minimal theme:enable olivero
