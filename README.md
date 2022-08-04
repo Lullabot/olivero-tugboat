@@ -1,7 +1,7 @@
 
 # Tugboat Drupal Dev Branch Builder (with database and content import) for Olivero
 
-This repository pulls in the latest Drupal `9.4.x` HEAD and then builds three previews:
+This repository pulls in the latest Drupal `10.1.x` HEAD and then builds three previews:
 
 1. Standard install with database import
    - Pulls  in a gzipped db from Dropbox containing content and enabled modules.
