@@ -110,7 +110,8 @@ services:
         # composer require drupal/form_style
         # composer require drupal/admin_toolbar
         # composer require drupal/metatag
-        # composer require drupal/devel:^4
+        composer require drupal/devel
+        composer require 'drupal/pager_load_more:1.0.x-dev@dev'
         # composer require drupal/styleguide:2.x-dev@dev
 
         # Add composer files to git
@@ -122,33 +123,6 @@ services:
         drush -y --uri=preloaded updatedb || true
         drush -y --uri=preloaded cache:rebuild
 
-    visualdiffs:
-      - /
-      - /node/7
-      - /node/6
-      - /node/4
-      - /node/1
-      - /node/3
-      - /node/13 # High z-index block
-      - /node/31
-      - /node/58
-      - /node/59
-      # - /form/job-application
-      # - /form/registration
-      # - /form/session-evaluation
-      # - /form/user-profile
-      - /grid-view
-      - /table
-      - /contact
-      - /search/node?keys=drupal
-      - /user/login
-      - /user/register
-      # - /admin/appearance/styleguide/olivero
-      # - /appearance/form_style
-      - /node/60
-      # - /message/long
-      # - /buttons
-      # - /tabledrag
   mysql:
     image: tugboatqa/mariadb
     commands:
