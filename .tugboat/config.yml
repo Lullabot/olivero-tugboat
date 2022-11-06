@@ -111,8 +111,11 @@ services:
         # composer require drupal/admin_toolbar
         # composer require drupal/metatag
         composer require drupal/devel
-        composer require 'drupal/pager_load_more:1.0.x-dev@dev'
-        # composer require drupal/styleguide:2.x-dev@dev
+
+        # Composer isn't working with pager_load_more, so we'll do it manually. 🤷‍♂️
+        # composer require 'drupal/pager_load_more:1.0.x-dev@dev'
+        wget -O /tmp/pager_load_more.zip https://ftp.drupal.org/files/projects/pager_load_more-1.0.x-dev.zip
+        unzip -od $DOCROOT/modules/contrib /tmp/pager_load_more.zip
 
         # Add composer files to git
         git add composer.json composer.lock
