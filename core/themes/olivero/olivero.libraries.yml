@@ -44,7 +44,6 @@ global-styling:
       css/components/page-title.css: {}
       css/components/site-header.css: {}
       css/components/skip-link.css: {}
-      css/components/pager.css: {}
       css/components/table.css: {}
       css/components/text-content.css: {}
       css/components/tabledrag.css: {}
