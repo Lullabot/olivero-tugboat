@@ -101,7 +101,7 @@ services:
         # Download Claro Tools
         wget -O /tmp/cd_tools.zip https://github.com/bbenjamin/cd_tools/archive/refs/heads/master.zip
         unzip -od $DOCROOT/modules/contrib /tmp/cd_tools.zip
-        mv $DOCROOT/modules/contrib/cd_tools-3.0.0 $DOCROOT/modules/contrib/cd_tools
+        mv $DOCROOT/modules/contrib/cd_tools-master $DOCROOT/modules/contrib/cd_tools
 
       build: |
         set -eux
