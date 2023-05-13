@@ -83,7 +83,7 @@ services:
         zcat $TUGBOAT_ROOT/.tugboat/olivero-tugboat-10.sql.gz | vendor/bin/drush --uri=preloaded sql:cli
 
         # See https://www.drupal.org/node/3328126
-        echo "$settings['file_assets_path'] = 'sites/default/files';" >> ${DOCROOT}/sites/default/settings.php
+        echo "\$settings['file_assets_path'] = 'sites/default/files';" >> ${DOCROOT}/sites/default/settings.php
 
         # Set default theme for minimal and standard profiles.
         # drush --uri=minimal theme:enable olivero
