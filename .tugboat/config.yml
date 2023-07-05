@@ -19,7 +19,7 @@ services:
         export COMPOSER_MEMORY_LIMIT=-1
 
         # Create a Drupal 10 site with Tugboat config.
-        git clone --depth 1 --branch 10.1.x --quiet https://git.drupalcode.org/project/drupal.git drupal
+        git clone --depth 1 --branch 11.x --quiet https://git.drupalcode.org/project/drupal.git drupal
         rm -rf drupal/.git
 
         # Moves all files (including dotfiles) to root of repository.
@@ -27,14 +27,14 @@ services:
         rm -rf drupal/
 
         # Delete existing Drupal branch if exists.
-        git branch -d 10.1.x || true
-        git push origin --delete 10.1.x || true
+        git branch -d 11.x || true
+        git push origin --delete 11.x || true
 
         # Add Drupal to new branch, and push.
-        git checkout -b 10.1.x
+        git checkout -b 11.x
         git add .
         git commit -m "Adding Drupal 10."
-        git push --force origin 10.1.x
+        git push --force origin 11.x
 
         cp $TUGBOAT_ROOT/.tugboat/sites.php $TUGBOAT_ROOT/sites/sites.php
         cp $TUGBOAT_ROOT/.tugboat/custom-development.services.yml $TUGBOAT_ROOT/sites/custom-development.services.yml
@@ -119,7 +119,7 @@ services:
         # Add composer files to git
         git add composer.json composer.lock
         git commit -m "Adding updated composer files." || true
-        git push origin 10.1.x || true
+        git push origin 11.x || true
 
         # Update the preloaded database and clear the cache.
         drush -y --uri=preloaded updatedb || true
