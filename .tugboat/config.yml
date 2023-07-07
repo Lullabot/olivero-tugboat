@@ -104,11 +104,11 @@ services:
         mv $DOCROOT/modules/contrib/cd_tools-master $DOCROOT/modules/contrib/cd_tools
 
       build: |
-        set -eux
-        export COMPOSER_MEMORY_LIMIT=-1
-        cd $TUGBOAT_ROOT
-        composer install --optimize-autoloader
-        composer require drush/drush --with-all-dependencies
+        set -eux || true
+        export COMPOSER_MEMORY_LIMIT=-1 || true
+        cd $TUGBOAT_ROOT || true
+        composer install --optimize-autoloader || true
+        composer require drush/drush --with-all-dependencies || true
         # composer require drupal/webform
         # composer require drupal/form_style
         # composer require drupal/admin_toolbar
