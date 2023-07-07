@@ -156,6 +156,6 @@ services:
     image: tugboatqa/mariadb
     commands:
       update:
-        - mysql -e "DROP DATABASE IF EXISTS preloaded; DROP DATABASE IF EXISTS minimal; DROP DATABASE IF EXISTS standard;"
-        - mysql -e "CREATE DATABASE preloaded; CREATE DATABASE minimal; CREATE DATABASE standard;"
-        - mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'tugboat'; FLUSH PRIVILEGES;"
+        - mariadb -e "DROP DATABASE IF EXISTS preloaded; DROP DATABASE IF EXISTS minimal; DROP DATABASE IF EXISTS standard;"
+        - mariadb -e "CREATE DATABASE preloaded; CREATE DATABASE minimal; CREATE DATABASE standard;"
+        - mariadb -e "GRANT ALL PRIVILEGES ON *.* TO 'tugboat'; FLUSH PRIVILEGES;"
