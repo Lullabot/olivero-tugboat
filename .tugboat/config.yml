@@ -109,12 +109,12 @@ services:
         cd $TUGBOAT_ROOT
         composer install --optimize-autoloader
         composer require drush/drush --with-all-dependencies
-        composer require drupal/webform
-        composer require drupal/form_style
-        composer require drupal/admin_toolbar
-        composer require drupal/metatag
-        composer require drupal/devel
-        composer require drupal/styleguide
+        # composer require drupal/webform
+        # composer require drupal/form_style
+        # composer require drupal/admin_toolbar
+        # composer require drupal/metatag
+        # composer require drupal/devel
+        # composer require drupal/styleguide
 
         # Add composer files to git
         git add composer.json composer.lock
