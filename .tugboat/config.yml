@@ -122,13 +122,13 @@ services:
         git commit -m "Adding updated composer files." || true
         git push origin 10.1.x || true
 
-        # Configure navigation module.
-        vendor/bin/drush en -y navigation || true
-        vendor/bin/drush pmu -y admin_toolbar || true
-
         # Update the preloaded database and clear the cache.
         vendor/bin/drush -y --uri=preloaded updatedb || true
         vendor/bin/drush -y --uri=preloaded cache:rebuild
+
+        # Configure navigation module.
+        vendor/bin/drush en -y --uri=preloaded navigation || true
+        vendor/bin/drush pmu -y --uri=preloaded admin_toolbar || true
   mysql:
     image: tugboatqa/mariadb
     commands:
