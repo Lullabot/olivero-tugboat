@@ -115,43 +115,20 @@ services:
         composer require drupal/metatag
         composer require drupal/devel
         composer require drupal/styleguide
+        composer require 'drupal/navigation:1.x-dev@dev'
 
         # Add composer files to git
         git add composer.json composer.lock
         git commit -m "Adding updated composer files." || true
         git push origin 10.1.x || true
 
+        # Configure navigation module.
+        vendor/bin/drush en -y navigation || true
+        vendor/bin/drush pmu -y admin_toolbar || true
+
         # Update the preloaded database and clear the cache.
         vendor/bin/drush -y --uri=preloaded updatedb || true
         vendor/bin/drush -y --uri=preloaded cache:rebuild
-
-    visualdiffs:
-      - /
-      - /node/7
-      - /node/6
-      - /node/4
-      - /node/1
-      - /node/3
-      - /node/13 # High z-index block
-      - /node/31
-      - /node/58
-      - /node/59
-      # - /form/job-application
-      # - /form/registration
-      # - /form/session-evaluation
-      # - /form/user-profile
-      - /grid-view
-      - /table
-      - /contact
-      - /search/node?keys=drupal
-      - /user/login
-      - /user/register
-      # - /admin/appearance/styleguide/olivero
-      # - /appearance/form_style
-      - /node/60
-      # - /message/long
-      # - /buttons
-      # - /tabledrag
   mysql:
     image: tugboatqa/mariadb
     commands:
