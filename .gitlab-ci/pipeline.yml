@@ -1,0 +1,331 @@
+# cspell:ignore drupaltestbot drupaltestbotpw
+
+stages:
+  ################
+  # Build
+  #
+  # Assemble the test environment.
+  ################
+  - 🏗️ Build
+
+  ################
+  # Test
+  #
+  # The test phase actually executes the tests, as well as gathering results
+  # and artifacts.
+  ################
+  - 🗜️ Test
+
+#############
+# Templates #
+#############
+
+.default-job-settings: &default-job-settings
+  interruptible: true
+  allow_failure: false
+  retry:
+    max: 2
+    when:
+      - unknown_failure
+      - api_failure
+      - stuck_or_timeout_failure
+      - runner_system_failure
+      - scheduler_failure
+  image:
+    name: $_CONFIG_DOCKERHUB_ROOT/php-$_TARGET_PHP-apache:production
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "parent_pipeline"
+
+.composer-cache: &composer-cache
+  key:
+    files:
+      - ./composer.json
+      - ./composer.lock
+  paths:
+    - ./vendor
+
+.yarn-cache: &yarn-cache
+  key:
+    files:
+      - ./core/package.json
+      - ./core/yarn.lock
+  paths:
+    - ./core/node_modules
+
+.with-composer-cache: &with-composer-cache
+  dependencies:
+    - '📦️ Composer'
+  cache:
+    policy: pull
+    <<: *composer-cache
+
+.with-yarn-cache: &with-yarn-cache
+  dependencies:
+    - '📦️ Yarn'
+  cache:
+    policy: pull
+    <<: *yarn-cache
+
+.junit-artifacts: &junit-artifacts
+  artifacts:
+    expose_as: junit
+    expire_in: 6 mos
+    paths:
+      - junit.xml
+    reports:
+      junit: junit.xml
+
+.with-composer-and-yarn: &with-composer-and-yarn
+  needs:
+    - '📦️ Composer'
+    - '📦️ Yarn'
+  dependencies:
+    - '📦️ Yarn'
+    - '📦️ Composer'
+
+.test-variables: &test-variables
+  FF_NETWORK_PER_BUILD: 1
+  SIMPLETEST_BASE_URL: http://localhost/subdirectory
+  DB_DRIVER: mysql
+  MYSQL_ROOT_PASSWORD: root
+  MYSQL_DATABASE: mysql
+  MYSQL_USER: drupaltestbot
+  MYSQL_PASSWORD: drupaltestbotpw
+  POSTGRES_DB: drupaltestbot
+  POSTGRES_USER: drupaltestbot
+  POSTGRES_PASSWORD: drupaltestbotpw
+  MINK_DRIVER_ARGS_WEBDRIVER: '["chrome", {"browserName":"chrome","chromeOptions":{"args":["--disable-dev-shm-usage","--disable-gpu","--headless"]}}, "http://localhost:9515"]'
+  CI_PARALLEL_NODE_INDEX: $CI_NODE_INDEX
+  CI_PARALLEL_NODE_TOTAL: $CI_NODE_TOTAL
+
+.with-database: &with-database
+  name: $_CONFIG_DOCKERHUB_ROOT/$_TARGET_DB:production
+  alias: database
+
+.with-chrome: &with-chrome
+  name: $_CONFIG_DOCKERHUB_ROOT/chromedriver:production
+  alias: chrome
+  entrypoint:
+    - chromedriver
+    - "--no-sandbox"
+    - "--log-path=/tmp/chromedriver.log"
+    - "--verbose"
+    - "--whitelisted-ips="
+
+.phpunit-artifacts: &phpunit-artifacts
+  artifacts:
+    when: always
+    expire_in: 6 mos
+    reports:
+      junit: ./sites/default/files/simpletest/phpunit-*.xml
+    paths:
+      - ./sites/default/files/simpletest/phpunit-*.xml
+      - ./sites/simpletest/browser_output
+
+.setup-webroot: &setup-webserver
+  before_script:
+    - ln -s $CI_PROJECT_DIR /var/www/html/subdirectory
+    - sudo service apache2 start
+
+.run-tests: &run-tests
+  script:
+    # Determine DB driver.
+    - |
+      [[ $_TARGET_DB == sqlite* ]] && export SIMPLETEST_DB=sqlite://localhost/$CI_PROJECT_DIR/sites/default/files/db.sqlite?module=sqlite
+      [[ $_TARGET_DB == mysql* ]] && export SIMPLETEST_DB=mysql://$MYSQL_USER:$MYSQL_PASSWORD@database/$MYSQL_DATABASE?module=mysql
+      [[ $_TARGET_DB == mariadb* ]] && export SIMPLETEST_DB=mysql://$MYSQL_USER:$MYSQL_PASSWORD@database/$MYSQL_DATABASE?module=mysql
+      [[ $_TARGET_DB == pgsql* ]] && export SIMPLETEST_DB=pgsql://$POSTGRES_USER:$POSTGRES_PASSWORD@database/$POSTGRES_DB?module=pgsql
+    - mkdir -p ./sites/simpletest ./sites/default/files ./build/logs/junit /var/www/.composer
+    - chown -R www-data:www-data ./sites ./build/logs/junit ./vendor /var/www/
+    - sudo -u www-data git config --global --add safe.directory $CI_PROJECT_DIR
+    # Need to pass this along directly.
+    - sudo MINK_DRIVER_ARGS_WEBDRIVER="$MINK_DRIVER_ARGS_WEBDRIVER" -u www-data php ./core/scripts/run-tests.sh --color --keep-results --types "$TESTSUITE" --concurrency "$CONCURRENCY" --repeat "1" --sqlite "./sites/default/files/tests.sqlite" --dburl $SIMPLETEST_DB --url $SIMPLETEST_BASE_URL --verbose --non-html --all --ci-parallel-node-index $CI_PARALLEL_NODE_INDEX --ci-parallel-node-total $CI_PARALLEL_NODE_TOTAL
+
+################
+# Jobs
+#
+# Jobs define what scripts are actually executed in each stage.
+#
+# The 'rules' keyword can also be used to define conditions for each job.
+#
+# Documentation: https://docs.gitlab.com/ee/ci/jobs/
+################
+
+################
+# Build Jobs
+################
+
+'📦️ Composer':
+  <<: *default-job-settings
+  stage: 🏗️ Build
+  cache:
+    <<: *composer-cache
+  artifacts:
+    expire_in: 1 week
+    expose_as: 'web-vendor'
+    paths:
+      - vendor/
+  script:
+      - composer validate
+      - composer install
+
+'📦️ Yarn':
+  <<: *default-job-settings
+  stage: 🏗️ Build
+  cache:
+    <<: *yarn-cache
+  artifacts:
+    expire_in: 1 week
+    expose_as: 'yarn-vendor'
+    paths:
+      - core/node_modules/
+  script:
+    # Installs all core javascript dependencies and adds junit formatter.
+    - yarn --cwd ./core add stylelint-junit-formatter
+
+################
+# Test Jobs
+################
+
+'⚡️ PHPUnit Unit':
+  <<: [ *with-composer-cache, *phpunit-artifacts, *setup-webserver, *run-tests, *default-job-settings ]
+  stage: 🗜️ Test
+  services:
+    # There are some unit tests that need a database.
+    # @todo Remove after https://www.drupal.org/project/drupal/issues/3386217
+    - <<: *with-database
+  variables:
+    <<: *test-variables
+    TESTSUITE: PHPUnit-Unit
+    CONCURRENCY: "$CONCURRENCY"
+    KUBERNETES_CPU_REQUEST: "16"
+
+'🌐️️ PHPUnit Functional':
+  <<: [ *with-composer-cache, *phpunit-artifacts, *setup-webserver, *run-tests, *default-job-settings ]
+  stage: 🗜️ Test
+  parallel: 6
+  variables:
+    <<: *test-variables
+    TESTSUITE: PHPUnit-Functional
+    CONCURRENCY: "$CONCURRENCY"
+    KUBERNETES_CPU_REQUEST: "24"
+  services:
+    - <<: *with-database
+
+'🩹 Test-only changes':
+  <<: [ *with-composer-cache, *phpunit-artifacts, *setup-webserver, *default-job-settings ]
+  stage: 🗜️ Test
+  when: manual
+  interruptible: true
+  allow_failure: true
+  variables:
+    <<: *test-variables
+  services:
+    - <<: *with-database
+    - <<: *with-chrome
+  script:
+    #  Determine DB driver.
+    - |
+      [[ $_TARGET_DB == sqlite* ]] && export SIMPLETEST_DB=sqlite://localhost/subdirectory/sites/default/files/db.sqlite?module=sqlite
+      [[ $_TARGET_DB == mysql* ]] && export SIMPLETEST_DB=mysql://$MYSQL_USER:$MYSQL_PASSWORD@database/$MYSQL_DATABASE?module=mysql
+      [[ $_TARGET_DB == mariadb* ]] && export SIMPLETEST_DB=mysql://$MYSQL_USER:$MYSQL_PASSWORD@database/$MYSQL_DATABASE?module=mysql
+      [[ $_TARGET_DB == pgsql* ]] && export SIMPLETEST_DB=pgsql://$POSTGRES_USER:$POSTGRES_PASSWORD@database/$POSTGRES_DB?module=pgsql
+    - mkdir -p ./sites/simpletest ./sites/default/files ./build/logs/junit /var/www/.composer
+    - chown -R www-data:www-data ./sites ./build/logs/junit ./vendor /var/www/
+    - sudo -u www-data git config --global --add safe.directory $CI_PROJECT_DIR
+    - export TARGET_BRANCH=${CI_MERGE_REQUEST_TARGET_BRANCH_NAME}${CI_COMMIT_BRANCH}
+    - git fetch -vn --depth=3 "$CI_MERGE_REQUEST_PROJECT_URL" "+refs/heads/$TARGET_BRANCH:refs/heads/$TARGET_BRANCH"
+    - |
+      echo "ℹ️ Changes from ${TARGET_BRANCH}"
+      git diff refs/heads/${TARGET_BRANCH} --name-only
+      echo "If this list contains more files than what you changed, then you need to rebase your branch."
+      echo "1️⃣ Reverting non test changes"
+      if [[ $(git diff refs/heads/${TARGET_BRANCH} --diff-filter=DM --name-only|grep -Ev "Test.php$"|grep -v .gitlab-ci|grep -v scripts/run-tests.sh) ]]; then
+        git diff refs/heads/${TARGET_BRANCH} --diff-filter=DM --name-only|grep -Ev "Test.php$"|grep -v .gitlab-ci|grep -v scripts/run-tests.sh|while read file;do
+          echo "↩️ Reverting $file";
+          git checkout refs/heads/${TARGET_BRANCH} -- $file;
+        done
+      fi
+      if [[ $(git diff refs/heads/${TARGET_BRANCH} --diff-filter=A --name-only|grep -Ev "Test.php$"|grep -v .gitlab-ci|grep -v scripts/run-tests.sh) ]]; then
+        git diff refs/heads/${TARGET_BRANCH} --diff-filter=A --name-only|grep -Ev "Test.php$"|grep -v .gitlab-ci|grep -v scripts/run-tests.sh|while read file;do
+          echo "🗑️️ Deleting $file";
+          git rm $file;
+        done
+      fi
+      echo "2️⃣ Running test changes for this branch"
+      if [[ $(git diff refs/heads/${TARGET_BRANCH} --name-only|grep -E "Test.php$") ]]; then
+        for test in `git diff refs/heads/${TARGET_BRANCH} --name-only|grep -E "Test.php$"`; do
+          sudo SIMPLETEST_BASE_URL="$SIMPLETEST_BASE_URL" SIMPLETEST_DB="$SIMPLETEST_DB" MINK_DRIVER_ARGS_WEBDRIVER="$MINK_DRIVER_ARGS_WEBDRIVER" -u www-data ./vendor/bin/phpunit -c core $test --log-junit=./sites/default/files/simpletest/phpunit-`echo $test|sed 's/\//_/g' `.xml;
+        done;
+      fi
+
+'⚙️️ PHPUnit Kernel':
+  <<: [*with-composer-cache, *phpunit-artifacts, *setup-webserver, *run-tests, *default-job-settings ]
+  stage: 🗜️ Test
+  variables:
+    <<: *test-variables
+    TESTSUITE: PHPUnit-Kernel
+    CONCURRENCY: "$CONCURRENCY"
+    KUBERNETES_CPU_REQUEST: "16"
+  services:
+    - <<: *with-database
+
+'🖱️️️ PHPUnit Functional Javascript':
+  <<: [ *with-composer-cache, *phpunit-artifacts, *setup-webserver, *run-tests, *default-job-settings ]
+  stage: 🗜️ Test
+  variables:
+    <<: *test-variables
+    TESTSUITE: PHPUnit-FunctionalJavascript
+    CONCURRENCY: 15
+    KUBERNETES_CPU_REQUEST: "8"
+  services:
+    - <<: *with-database
+    - <<: *with-chrome
+
+'👷️️️ PHPUnit Build':
+  <<: [ *with-composer-cache, *phpunit-artifacts, *setup-webserver, *run-tests, *default-job-settings ]
+  stage: 🗜️ Test
+  variables:
+    <<: *test-variables
+    TESTSUITE: PHPUnit-Build
+    CONCURRENCY: "$CONCURRENCY"
+    KUBERNETES_CPU_REQUEST: "2"
+  services:
+    - <<: *with-database
+
+'🦉️️️ Nightwatch':
+  <<: [ *with-composer-and-yarn, *setup-webserver, *default-job-settings ]
+  stage: 🗜️ Test
+  variables:
+    <<: *test-variables
+    KUBERNETES_CPU_REQUEST: "3"
+  services:
+    - <<: *with-database
+    - <<: *with-chrome
+  script:
+    # Determine DB driver.
+    - |
+      [[ $_TARGET_DB == sqlite* ]] && export DRUPAL_TEST_DB_URL=sqlite://localhost/$CI_PROJECT_DIR/sites/default/files/db.sqlite?module=sqlite
+      [[ $_TARGET_DB == mysql* ]] && export DRUPAL_TEST_DB_URL=mysql://$MYSQL_USER:$MYSQL_PASSWORD@database/$MYSQL_DATABASE?module=mysql
+      [[ $_TARGET_DB == mariadb* ]] && export DRUPAL_TEST_DB_URL=mysql://$MYSQL_USER:$MYSQL_PASSWORD@database/$MYSQL_DATABASE?module=mysql
+      [[ $_TARGET_DB == pgsql* ]] && export DRUPAL_TEST_DB_URL=pgsql://$POSTGRES_USER:$POSTGRES_PASSWORD@database/$POSTGRES_DB?module=pgsql
+    - cp ./core/.env.example ./core/.env
+    # dotenv-safe/config does not support environment variables
+    # @see https://github.com/rolodato/dotenv-safe/issues/126
+    # @todo move this to `variables` when the above is resolved
+    - echo "DRUPAL_TEST_BASE_URL='http://localhost/subdirectory'" >> ./core/.env
+    - echo "DRUPAL_TEST_CHROMEDRIVER_AUTOSTART=false" >> ./core/.env
+    - echo "DRUPAL_TEST_DB_URL='${DRUPAL_TEST_DB_URL}'" >> ./core/.env
+    - echo "DRUPAL_TEST_WEBDRIVER_HOSTNAME='localhost'" >> ./core/.env
+    - echo "DRUPAL_TEST_WEBDRIVER_CHROME_ARGS='--disable-dev-shm-usage --disable-gpu --headless'" >> ./core/.env
+    - echo "DRUPAL_TEST_WEBDRIVER_PORT='9515'" >> ./core/.env
+    - echo "DRUPAL_NIGHTWATCH_OUTPUT='"../nightwatch_output"'" >> ./core/.env
+    - chown -R www-data:www-data ./sites /var/www
+    - sudo -u www-data yarn run --cwd=./core test:nightwatch --workers=4
+  artifacts:
+    when: always
+    expire_in: 6 mos
+    reports:
+      junit: ./nightwatch_output/**/*.xml
+    paths:
+      - ./nightwatch_output

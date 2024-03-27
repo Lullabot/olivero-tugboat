@@ -1,0 +1,317 @@
+# cspell:ignore drupaltestbot drupaltestbotpw codequality Micheh micheh
+
+################
+# Drupal GitLabCI template.
+#
+# Based off GitlabCI templates project: https://git.drupalcode.org/project/gitlab_templates
+# Guide: https://www.drupal.org/docs/develop/git/using-gitlab-to-contribute-to-drupal/gitlab-ci
+#
+# With thanks to:
+# - The GitLab Acceleration Initiative participants
+# - DrupalSpoons
+################
+
+################
+# Includes
+#
+# Additional configuration can be provided through includes.
+# One advantage of include files is that if they are updated upstream, the
+# changes affect all pipelines using that include.
+#
+# Includes can be overridden by re-declaring anything provided in an include,
+# here in gitlab-ci.yml.
+# https://docs.gitlab.com/ee/ci/yaml/includes.html#override-included-configuration-values
+################
+
+include:
+  - project: $_GITLAB_TEMPLATES_REPO
+    ref: $_GITLAB_TEMPLATES_REF
+    file:
+      - '/includes/include.drupalci.variables.yml'
+      - '/includes/include.drupalci.workflows.yml'
+
+################
+# Variables
+#
+# Overriding variables
+# - To override one or more of these variables, simply declare your own variables keyword.
+# - Keywords declared directly in .gitlab-ci.yml take precedence over include files.
+# - Documentation:  https://docs.gitlab.com/ee/ci/variables/
+# - Predefined variables: https://docs.gitlab.com/ee/ci/variables/predefined_variables.html
+#
+################
+
+variables:
+  COMPOSER: composer.json
+  # Let composer know what self.version means.
+  COMPOSER_ROOT_VERSION: "${CI_MERGE_REQUEST_TARGET_BRANCH_NAME}${CI_COMMIT_BRANCH}-dev"
+  CONCURRENCY: 32
+  GIT_DEPTH: "3"
+
+.default-lint-variables: &default-lint-variables
+    _TARGET_PHP: "8.2"
+    _TARGET_DB: "sqlite-3"
+
+#############
+# Stages    #
+#############
+stages:
+  - 🏗️ Build
+  - 🪄 Lint
+  - 🗜️ Test
+
+#############
+# Templates #
+#############
+
+.default-job-settings: &default-job-settings-lint
+  interruptible: true
+  allow_failure: false
+  retry:
+    max: 2
+    when:
+      - unknown_failure
+      - api_failure
+      - stuck_or_timeout_failure
+      - runner_system_failure
+      - scheduler_failure
+  image:
+    name: $_CONFIG_DOCKERHUB_ROOT/php-$_TARGET_PHP-apache:production
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_PROJECT_ROOT_NAMESPACE == "project"
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+
+.composer-cache: &composer-cache
+  key:
+    files:
+      - ./composer.json
+      - ./composer.lock
+  paths:
+    - ./vendor
+
+.yarn-cache: &yarn-cache
+  key:
+    files:
+      - ./core/package.json
+      - ./core/yarn.lock
+  paths:
+    - ./core/node_modules
+
+.with-composer-cache: &with-composer-cache
+  cache:
+    policy: pull
+    <<: *composer-cache
+  dependencies:
+    - '📦️ Composer'
+
+.with-yarn-cache: &with-yarn-cache
+  dependencies:
+    - '📦️ Yarn'
+  cache:
+    policy: pull
+    <<: *yarn-cache
+
+.junit-artifacts: &junit-artifacts
+  artifacts:
+    expose_as: junit
+    expire_in: 6 mos
+    paths:
+      - junit.xml
+    reports:
+      junit: junit.xml
+
+
+################
+# Stages
+#
+# Each job is assigned to a stage, defining the order in which the jobs are executed.
+# Jobs in the same stage run in parallel.
+#
+# If all jobs in a stage succeed, the pipeline will proceed to the next stage.
+# If any job in the stage fails, the pipeline will exit early.
+################
+
+.default-stage: &default-stage
+  stage: 🗜️ Test
+  trigger:
+    # Rely on the status of the child pipeline.
+    strategy: depend
+    include:
+      - local: .gitlab-ci/pipeline.yml
+
+.run-on-commit: &run-on-commit
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_PROJECT_ROOT_NAMESPACE == "project"
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: manual
+      allow_failure: true
+
+.run-daily: &run-daily
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $CI_PROJECT_ROOT_NAMESPACE == "project"
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: manual
+      allow_failure: true
+
+# Default configuration.
+'PHP 8.1 MySQL 5.7':
+  <<: *default-stage
+  variables:
+    _TARGET_PHP: "8.1"
+    _TARGET_DB: "mysql-5.7"
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_PROJECT_ROOT_NAMESPACE == "project"
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+
+# Run on commit, or manually.
+'PHP 8.2 MySQL 8':
+  <<: [ *default-stage, *run-on-commit ]
+  variables:
+    _TARGET_PHP: "8.2"
+    _TARGET_DB: "mysql-8"
+
+'PHP 8.2 PostgreSQL 14.1':
+  <<: [ *default-stage, *run-on-commit ]
+  variables:
+    _TARGET_PHP: "8.2"
+    _TARGET_DB: "pgsql-14.1"
+
+'PHP 8.2 PostgreSQL 15':
+  <<: [ *default-stage, *run-on-commit ]
+  variables:
+    _TARGET_PHP: "8.2"
+    _TARGET_DB: "pgsql-15"
+
+'PHP 8.2 PostgreSQL 16':
+  <<: [ *default-stage, *run-on-commit ]
+  variables:
+    _TARGET_PHP: "8.2"
+    _TARGET_DB: "pgsql-16"
+
+'PHP 8.2 SQLite 3':
+  <<: [ *default-stage, *run-on-commit ]
+  variables:
+    _TARGET_PHP: "8.2"
+    _TARGET_DB: "sqlite-3"
+
+# Run daily, or manually.
+# 'PHP 8.1 MariaDB 10.3.22':
+#   <<: [ *default-stage, *run-daily ]
+#   variables:
+#     _TARGET_PHP: "8.1"
+#     _TARGET_DB: "mariadb-10.3.22"
+
+# 'PHP 8.1 MySQL 5.7 with updated deps':
+#   <<: [ *default-stage, *run-daily ]
+#   variables:
+#     _TARGET_PHP: "8.1"
+#     _TARGET_DB: "mysql-5.7"
+
+'PHP 8.1 PostgreSQL 14.1':
+  <<: [ *default-stage, *run-on-commit ]
+  variables:
+    _TARGET_PHP: "8.1"
+    _TARGET_DB: "pgsql-14.1"
+
+'PHP 8.1 SQLite 3':
+  <<: [ *default-stage, *run-on-commit ]
+  variables:
+    _TARGET_PHP: "8.1"
+    _TARGET_DB: "sqlite-3"
+
+
+################
+# Build Jobs for linting
+################
+
+'📦️ Composer':
+  <<: *default-job-settings-lint
+  variables:
+    <<: *default-lint-variables
+    KUBERNETES_CPU_REQUEST: "1"
+  stage: 🏗️ Build
+  cache:
+    <<: *composer-cache
+  artifacts:
+    expire_in: 1 week
+    expose_as: 'web-vendor'
+    paths:
+      - vendor/
+  script:
+      - composer validate
+      - composer install
+
+'📦️ Yarn':
+  <<: *default-job-settings-lint
+  variables:
+    <<: *default-lint-variables
+    KUBERNETES_CPU_REQUEST: "2"
+  stage: 🏗️ Build
+  cache:
+    <<: *yarn-cache
+  artifacts:
+    expire_in: 1 week
+    expose_as: 'yarn-vendor'
+    paths:
+      - core/node_modules/
+  script:
+    # Installs all core javascript dependencies and adds junit formatter.
+    - yarn --cwd ./core add stylelint-junit-formatter
+
+################
+# Lint Jobs
+################
+
+'🧹 PHP Coding standards (PHPCS)':
+  <<: [ *with-composer-cache, *junit-artifacts, *default-job-settings-lint ]
+  stage: 🪄 Lint
+  variables:
+    <<: *default-lint-variables
+    KUBERNETES_CPU_REQUEST: "16"
+  script:
+    - composer phpcs -- --report-junit=junit.xml --report-full --report-summary
+
+'🧹 PHP Static Analysis (phpstan)':
+  <<: [ *with-composer-cache, *junit-artifacts, *default-job-settings-lint ]
+  stage: 🪄 Lint
+  variables:
+    <<: *default-lint-variables
+    KUBERNETES_CPU_REQUEST: "16"
+  script:
+    - php vendor/bin/phpstan analyze --configuration=./core/phpstan.neon.dist --error-format=gitlab > phpstan-quality-report.json
+
+'🧹 CSS linting (stylelint)':
+  <<: [ *with-yarn-cache, *junit-artifacts, *default-job-settings-lint ]
+  stage: 🪄 Lint
+  variables:
+    KUBERNETES_CPU_REQUEST: "2"
+  script:
+    - yarn run --cwd=./core lint:css --color --custom-formatter node_modules/stylelint-junit-formatter > junit.xml
+
+'🧹 Compilation check':
+  <<: [ *with-yarn-cache, *default-job-settings-lint ]
+  stage: 🪄 Lint
+  variables:
+    KUBERNETES_CPU_REQUEST: "2"
+  script:
+    - yarn run --cwd=./core build:css --check
+    - cd core && yarn run -s check:ckeditor5
+
+'🧹 JavaScript linting (eslint)':
+  <<: [ *with-yarn-cache, *junit-artifacts, *default-job-settings-lint ]
+  stage: 🪄 Lint
+  variables:
+    KUBERNETES_CPU_REQUEST: "2"
+  script:
+    - yarn --cwd=./core run -s lint:core-js-passing --format junit > junit.xml
+
+'📔 Spell-checking':
+  <<: [ *with-yarn-cache, *default-job-settings-lint ]
+  stage: 🪄 Lint
+  variables:
+    KUBERNETES_CPU_REQUEST: "2"
+  script:
+    - export TARGET_BRANCH=${CI_MERGE_REQUEST_TARGET_BRANCH_NAME}${CI_COMMIT_BRANCH}
+    - git fetch -vn --depth=$GIT_DEPTH "${CI_MERGE_REQUEST_PROJECT_URL:-origin}" "+refs/heads/$TARGET_BRANCH:refs/heads/$TARGET_BRANCH"
+    - export MODIFIED=`git diff --name-only refs/heads/$TARGET_BRANCH|while read r;do echo "$CI_PROJECT_DIR/$r";done|tr "\n" " "`
+    - echo $MODIFIED | tr ' ' '\n' | yarn --cwd=./core run -s spellcheck:core --no-must-find-files --file-list stdin
