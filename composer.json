@@ -10,9 +10,16 @@
     },
     "require": {
         "composer/installers": "^2.0",
+        "drupal/admin_toolbar": "^3.4",
         "drupal/core": "self.version",
         "drupal/core-project-message": "self.version",
-        "drupal/core-vendor-hardening": "self.version"
+        "drupal/core-vendor-hardening": "self.version",
+        "drupal/devel": "^5.2",
+        "drupal/form_style": "^1.0@dev",
+        "drupal/metatag": "^2.0",
+        "drupal/styleguide": "^2.1",
+        "drupal/webform": "^6.2",
+        "drush/drush": "^12.5"
     },
     "require-dev": {
         "behat/mink": "^1.10",
