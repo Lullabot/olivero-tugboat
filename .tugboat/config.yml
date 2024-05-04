@@ -99,9 +99,9 @@ services:
         chmod -R g+w $DOCROOT/sites/preloaded/files
 
         # Download Claro Tools
-        wget -O /tmp/cd_tools.zip https://github.com/bbenjamin/cd_tools/archive/refs/heads/master.zip
-        unzip -od $DOCROOT/modules/contrib /tmp/cd_tools.zip
-        mv $DOCROOT/modules/contrib/cd_tools-master $DOCROOT/modules/contrib/cd_tools
+        # wget -O /tmp/cd_tools.zip https://github.com/bbenjamin/cd_tools/archive/refs/heads/master.zip
+        # unzip -od $DOCROOT/modules/contrib /tmp/cd_tools.zip
+        # mv $DOCROOT/modules/contrib/cd_tools-master $DOCROOT/modules/contrib/cd_tools
 
       build: |
         set -eux
